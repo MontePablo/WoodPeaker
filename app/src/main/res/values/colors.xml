@@ -9,5 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="dotRedDeep">#EA0000</color>
     <color name="dotRedLight">#D69494</color>
+    <color name="transparent">#00FFFFFF</color>
 
 </resources>

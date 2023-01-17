@@ -1,7 +1,10 @@
 package com.example.woodpeaker
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.woodpeaker.databinding.ActivityIntroBinding
@@ -37,6 +40,11 @@ class Intro : AppCompatActivity() {
                 changeLvDotColour();
             }
 
+        })
+
+        binding.exitFromViewpager.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(applicationContext, ChoosePackage::class.java))
+            finish()
         })
     }
     fun changeLvDotColour(){

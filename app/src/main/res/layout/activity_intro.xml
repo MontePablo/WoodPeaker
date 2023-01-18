@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/logobackround"
     tools:context=".Intro">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -29,8 +29,8 @@
         app:layout_constraintHeight_percent=".07">
         <androidx.cardview.widget.CardView
             android:layout_margin="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
             <ImageView
@@ -40,8 +40,8 @@
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_margin="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
             <ImageView
@@ -51,8 +51,8 @@
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:layout_margin="3dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="0dp">
             <ImageView

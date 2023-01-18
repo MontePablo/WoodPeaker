@@ -41,7 +41,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:padding="10dp"
         android:id="@+id/package1Border"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/shape_corner20dp_stroke_white"
         android:layout_marginTop="100dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -51,6 +51,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hdline">
         <TextView
+            android:visibility="gone"
             android:id="@+id/bestseller"
             android:textColor="@color/white"
             android:text="Best Seller"
@@ -64,7 +65,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:padding="15dp"
             android:id="@+id/package1"
-            android:background="@drawable/round_corner_black_border"
+            android:background="@drawable/shape_corner3dp_strokeblack"
             app:layout_constraintTop_toBottomOf="@id/bestseller"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -86,7 +87,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:padding="10dp"
         android:id="@+id/package2Border"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/shape_corner20dp_stroke_white"
         android:layout_marginTop="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -96,6 +97,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/package1Border">
         <TextView
+            android:visibility="gone"
             android:id="@+id/bestseller2"
             android:textColor="@color/white"
             android:text="Best Seller"
@@ -109,7 +111,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:padding="15dp"
             android:id="@+id/package2"
-            android:background="@drawable/round_corner_black_border"
+            android:background="@drawable/shape_corner3dp_strokeblack"
             app:layout_constraintTop_toBottomOf="@id/bestseller2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -131,7 +133,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:padding="10dp"
         android:id="@+id/package3Border"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/shape_corner20dp_stroke_white"
         android:layout_marginTop="10dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -141,6 +143,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/package2Border">
         <TextView
+            android:visibility="gone"
             android:id="@+id/bestseller3"
             android:textColor="@color/white"
             android:text="Best Seller"
@@ -154,7 +157,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:padding="15dp"
             android:id="@+id/package3"
-            android:background="@drawable/round_corner_black_border"
+            android:background="@drawable/shape_corner3dp_strokeblack"
             app:layout_constraintTop_toBottomOf="@id/bestseller3"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -175,14 +178,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
+        android:id="@+id/btnContinue"
         android:textStyle="bold"
         android:text="Continue"
         android:drawableRight="@drawable/next_logo"
         android:layout_marginBottom="15dp"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/shape_corner20dp_stroke_white"
         android:layout_height="0dp"
         android:layout_width="0dp"
-        app:layout_constraintHeight_percent=".07"
+        app:layout_constraintHeight_percent=".06"
         app:layout_constraintWidth_percent=".4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

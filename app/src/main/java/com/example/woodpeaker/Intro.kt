@@ -44,7 +44,6 @@ class Intro : AppCompatActivity() {
 
         binding.exitFromViewpager.setOnClickListener(View.OnClickListener {
             startActivity(Intent(applicationContext, ChoosePackage::class.java))
-            finish()
         })
     }
     fun changeLvDotColour(){

@@ -16,11 +16,44 @@ class ChoosePackage : AppCompatActivity() {
         binding=ActivityChoosePackageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.singleUser.setOnClickListener(View.OnClickListener {
+            backpresscount=0
+            binding.singleUserBorder.visibility=View.GONE
+            binding.bulkUserBorder.visibility=View.GONE
+            binding.package1Border.visibility=View.VISIBLE
+            binding.package2Border.visibility=View.GONE
+            binding.package3Border.visibility=View.GONE
+        })
+
+        binding.bulkUser.setOnClickListener(View.OnClickListener {
+            backpresscount=0
+            binding.bulkUserBorder.visibility=View.GONE
+            binding.singleUserBorder.visibility=View.GONE
+            binding.package1Border.visibility=View.GONE
+            binding.package2Border.visibility=View.VISIBLE
+            binding.package3Border.visibility=View.VISIBLE
+        })
+
         binding.package1.setOnClickListener(View.OnClickListener { packageClick(1200) })
         binding.package2.setOnClickListener(View.OnClickListener { packageClick(3000) })
         binding.package3.setOnClickListener(View.OnClickListener { packageClick(12000) })
         binding.btnContinue.setOnClickListener(View.OnClickListener { startActivity(Intent(applicationContext, Login::class.java))})
 
+    }
+
+    var backpresscount=0
+    override fun onBackPressed() {
+        backpresscount++
+        if(backpresscount<=1){
+                binding.bulkUserBorder.visibility=View.VISIBLE
+                binding.singleUserBorder.visibility=View.VISIBLE
+                binding.package1Border.visibility=View.GONE
+                binding.package2Border.visibility=View.GONE
+                binding.package3Border.visibility=View.GONE
+        }else{
+            super.onBackPressed()
+            backpresscount=0
+        }
     }
 
     fun packageClick(a:Int){

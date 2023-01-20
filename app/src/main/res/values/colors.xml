@@ -8,7 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dotRedDeep">#EA0000</color>
+    <color name="glowing_orange">#CD6001</color>
     <color name="dotRedLight">#D69494</color>
+    <color name="logoBrown">#BB3542</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="lv1">#caeff8</color>
+    <color name="lv2">#e5cdb3</color>
+    <color name="lv345">#ffffff</color>
+
 
 </resources>

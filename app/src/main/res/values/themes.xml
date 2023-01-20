@@ -26,7 +26,7 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Woodpeaker" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Woodpeaker" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/dotRedLight</item>
         <item name="colorPrimaryVariant">@color/dotRedDeep</item>

@@ -49,6 +49,7 @@ class Intro : AppCompatActivity() {
     fun changeLvDotColour(){
         when(binding.viewpager2.currentItem){
             0->{
+                window.statusBarColor=getColor(R.color.lv1)
                 binding.lv1.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedDeep))
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
@@ -57,6 +58,7 @@ class Intro : AppCompatActivity() {
                 binding.exitFromViewpager.visibility=View.GONE
             }
             1->{
+                window.statusBarColor=getColor(R.color.lv2)
                 binding.lv1.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedDeep))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
@@ -65,6 +67,7 @@ class Intro : AppCompatActivity() {
                 binding.exitFromViewpager.visibility=View.GONE
             }
             2->{
+                window.statusBarColor=getColor(R.color.lv345)
                 binding.lv1.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedDeep))
@@ -74,6 +77,7 @@ class Intro : AppCompatActivity() {
 
             }
             3->{
+                window.statusBarColor=getColor(R.color.lv345)
                 binding.lv1.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
@@ -82,6 +86,7 @@ class Intro : AppCompatActivity() {
                 binding.exitFromViewpager.visibility=View.VISIBLE
             }
             4->{
+                window.statusBarColor=getColor(R.color.lv345)
                 binding.lv1.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))

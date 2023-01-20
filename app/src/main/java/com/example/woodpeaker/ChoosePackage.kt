@@ -18,25 +18,24 @@ class ChoosePackage : AppCompatActivity() {
 
         binding.singleUser.setOnClickListener(View.OnClickListener {
             backpresscount=0
-            binding.singleUserBorder.visibility=View.GONE
-            binding.bulkUserBorder.visibility=View.GONE
-            binding.package1Border.visibility=View.VISIBLE
+            binding.chooseUserLayout.visibility=View.GONE
+            binding.package3Border.visibility=View.VISIBLE
             binding.package2Border.visibility=View.GONE
-            binding.package3Border.visibility=View.GONE
+            binding.package1Border.visibility=View.GONE
+            packageClick(1200)
         })
 
         binding.bulkUser.setOnClickListener(View.OnClickListener {
             backpresscount=0
-            binding.bulkUserBorder.visibility=View.GONE
-            binding.singleUserBorder.visibility=View.GONE
-            binding.package1Border.visibility=View.GONE
+            binding.chooseUserLayout.visibility=View.GONE
+            binding.package1Border.visibility=View.VISIBLE
             binding.package2Border.visibility=View.VISIBLE
-            binding.package3Border.visibility=View.VISIBLE
+            binding.package3Border.visibility=View.GONE
         })
 
-        binding.package1.setOnClickListener(View.OnClickListener { packageClick(1200) })
-        binding.package2.setOnClickListener(View.OnClickListener { packageClick(3000) })
-        binding.package3.setOnClickListener(View.OnClickListener { packageClick(12000) })
+        binding.package1.setOnClickListener(View.OnClickListener { packageClick(3000) })
+        binding.package2.setOnClickListener(View.OnClickListener { packageClick(12000) })
+        binding.package3.setOnClickListener(View.OnClickListener { packageClick(1200) })
         binding.btnContinue.setOnClickListener(View.OnClickListener { startActivity(Intent(applicationContext, Login::class.java))})
 
     }
@@ -45,11 +44,11 @@ class ChoosePackage : AppCompatActivity() {
     override fun onBackPressed() {
         backpresscount++
         if(backpresscount<=1){
-                binding.bulkUserBorder.visibility=View.VISIBLE
-                binding.singleUserBorder.visibility=View.VISIBLE
+                binding.chooseUserLayout.visibility=View.VISIBLE
                 binding.package1Border.visibility=View.GONE
                 binding.package2Border.visibility=View.GONE
                 binding.package3Border.visibility=View.GONE
+                binding.btnContinue.visibility=View.GONE
         }else{
             super.onBackPressed()
             backpresscount=0
@@ -71,32 +70,35 @@ class ChoosePackage : AppCompatActivity() {
     fun colourSelected(a:Int) {
         when (a) {
             1200 -> {
-                binding.package1Border.backgroundTintList=getColorStateList(R.color.dotRedLight)
-//                binding.bestseller.visibility = View.VISIBLE
+                binding.package3Border.backgroundTintList=getColorStateList(R.color.dotRedLight)
+                binding.btnContinue.visibility=View.VISIBLE
             }
             3000 -> {
-                binding.package2Border.backgroundTintList=getColorStateList(R.color.dotRedLight)
-//                binding.bestseller2.visibility = View.VISIBLE
+                binding.package1Border.backgroundTintList=getColorStateList(R.color.dotRedLight)
+                binding.btnContinue.visibility=View.VISIBLE
             }
             12000 -> {
-                binding.package3Border.backgroundTintList=getColorStateList(R.color.dotRedLight)
-                binding.bestseller3.visibility = View.VISIBLE
+                binding.package2Border.backgroundTintList=getColorStateList(R.color.dotRedLight)
+                binding.btnContinue.visibility=View.VISIBLE
             }
         }
     }
     fun colourDeselected(a:Int) {
         when (a) {
             1200 -> {
-                binding.package1Border.backgroundTintList=getColorStateList(R.color.white)
-                binding.bestseller.visibility = View.GONE
-            }
-            3000 -> {
-                binding.package2Border.backgroundTintList=getColorStateList(R.color.white)
-                binding.bestseller2.visibility = View.GONE
-            }
-            12000 -> {
                 binding.package3Border.backgroundTintList=getColorStateList(R.color.white)
                 binding.bestseller3.visibility = View.GONE
+                binding.btnContinue.visibility=View.GONE
+            }
+            3000 -> {
+                binding.package1Border.backgroundTintList=getColorStateList(R.color.white)
+                binding.bestseller1.visibility = View.GONE
+                binding.btnContinue.visibility=View.GONE
+            }
+            12000 -> {
+                binding.package2Border.backgroundTintList=getColorStateList(R.color.white)
+                binding.bestseller2.visibility = View.GONE
+                binding.btnContinue.visibility=View.GONE
             }
         }
     }

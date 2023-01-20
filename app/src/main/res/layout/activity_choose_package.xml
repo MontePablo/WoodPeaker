@@ -3,305 +3,321 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/logobackround"
     android:layout_height="match_parent"
+    android:background="@drawable/logobackround"
     tools:context=".ChoosePackage">
 
     <ImageView
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scaleType="centerCrop"
         android:src="@drawable/logo"
-        app:layout_constraintHeight_percent=".2"/>
+        app:layout_constraintHeight_percent=".2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/hdline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
+        android:text="Activate Your Subcription"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:id="@+id/hdline"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logo"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Activate Your Subcription"/>
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
     <TextView
         android:id="@+id/text_view1"
-        android:padding="30sp"
-        android:autoSizeTextType="uniform"
-        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/hdline"
+        android:autoSizeTextType="uniform"
+        android:padding="30sp"
+        android:text="Get Kitchen measurement completely Automated"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Get Kitchen measurement completely Automated"/>
+        app:layout_constraintTop_toBottomOf="@id/hdline" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="10dp"
-        android:id="@+id/single_user_border"
-        android:background="@drawable/shape_corner20dp_stroke_white"
-        android:layout_marginTop="100dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintHeight_percent=".13"
-        app:layout_constraintWidth_percent=".9"
+        android:id="@+id/choose_user_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".5"
+        app:layout_constraintTop_toBottomOf="@id/text_view1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hdline">
+        app:layout_constraintBottom_toTopOf="@id/btnContinue">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="15dp"
-            android:id="@+id/single_user"
-            android:background="@drawable/shape_corner3dp_strokeblack"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="206dp" />
+        <TextView
+            android:id="@+id/text_view3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/logoBrown"
+            android:text="who are you?"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_width="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:autoSizeTextType="uniform"
+            android:textStyle="bold"
+            android:textSize="20sp"/>
+        <TextView
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/text_view3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".9"
-            app:layout_constraintHeight_percent=".6">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingRight="10dp"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="14sp"
-                android:text="Looking Kitchen for your Home?"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:layout_marginRight="30dp"
-                android:src="@drawable/logo_home"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView3"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="10dp"
-        android:id="@+id/bulk_user_border"
-        android:background="@drawable/shape_corner20dp_stroke_white"
-        android:layout_marginTop="100dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintHeight_percent=".13"
-        app:layout_constraintWidth_percent=".9"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/single_user_border">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="15dp"
+            android:textColor="@color/dotRedLight"
+            android:text="choose one"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:textSize="15sp"/>
+        <ImageButton
             android:id="@+id/bulk_user"
-            android:background="@drawable/shape_corner3dp_strokeblack"
+            android:elevation="20dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent=".44"
+            app:layout_constraintWidth_percent=".47"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/guideline2"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:src="@drawable/merchant_logo"/>
+        <ImageButton
+            android:id="@+id/single_user"
+            android:elevation="20dp"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".9"
-            app:layout_constraintHeight_percent=".6">
-
-            <TextView
-                android:id="@+id/text_view4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="14sp"
-                android:text="Looking Kitchens in bulk?"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:layout_marginLeft="30dp"
-                android:id="@+id/image_view2"
-                android:layout_marginRight="30dp"
-                android:src="@drawable/logo_business"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/text_view4"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="gone"
-        android:padding="10dp"
-        android:id="@+id/package1Border"
-        android:background="@drawable/shape_corner20dp_stroke_white"
-        android:layout_marginTop="100dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintHeight_percent=".13"
-        app:layout_constraintWidth_percent=".9"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view1">
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/bestseller"
-            android:textColor="@color/white"
-            android:text="Best Seller"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent=".44"
+            app:layout_constraintWidth_percent=".47"
+            android:scaleType="centerCrop"
+            app:layout_constraintLeft_toRightOf="@id/guideline2"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="15dp"
-            android:id="@+id/package1"
-            android:background="@drawable/shape_corner3dp_strokeblack"
-            app:layout_constraintTop_toBottomOf="@id/bestseller"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".9"
-            app:layout_constraintHeight_percent=".6">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="single Kitchen Order @ 1200 Rs"
-                android:textStyle="bold"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:src="@drawable/customer_logo"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="100dp"
-        android:visibility="gone"
-        android:padding="10dp"
-        android:id="@+id/package2Border"
-        android:background="@drawable/shape_corner20dp_stroke_white"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintHeight_percent=".13"
-        app:layout_constraintWidth_percent=".9"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/package1Border">
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/bestseller2"
-            android:textColor="@color/white"
-            android:text="Best Seller"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="15dp"
-            android:id="@+id/package2"
-            android:background="@drawable/shape_corner3dp_strokeblack"
-            app:layout_constraintTop_toBottomOf="@id/bestseller2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".9"
-            app:layout_constraintHeight_percent=".6">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="15 Kitchen Order/month @ 3000 Rs"
-                android:textStyle="bold"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="100dp"
         android:visibility="gone"
-        android:padding="10dp"
         android:id="@+id/package3Border"
-        android:background="@drawable/shape_corner20dp_stroke_white"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintHeight_percent=".13"
-        app:layout_constraintWidth_percent=".9"
+        android:background="@drawable/shape_corner20dp_stroke_white"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnContinue"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/package2Border">
+        app:layout_constraintTop_toBottomOf="@id/text_view1"
+        app:layout_constraintWidth_percent=".7">
+
         <TextView
-            android:visibility="gone"
             android:id="@+id/bestseller3"
-            android:textColor="@color/white"
-            android:text="Best Seller"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Best Seller"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:padding="15dp"
+            android:elevation="20dp"
             android:id="@+id/package3"
-            android:background="@drawable/shape_corner3dp_strokeblack"
-            app:layout_constraintTop_toBottomOf="@id/bestseller3"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintWidth_percent=".9"
-            app:layout_constraintHeight_percent=".6">
+            android:background="@drawable/shape_corner3dp_strokeblack"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bestseller3"
+            app:layout_constraintWidth_percent=".7">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:text="make a single Kitchen Order \n For your house \n at Rupees 1200/- "
+                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="unlimited Kitchen Order/year @ 12,000 Rs"
-                android:textStyle="bold"/>
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
+        android:id="@+id/package1Border"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner20dp_stroke_white"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/package2Border"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view1"
+        app:layout_constraintWidth_percent=".7">
+
+        <TextView
+            android:id="@+id/bestseller1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best Seller"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:elevation="20dp"
+            android:id="@+id/package1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_corner3dp_strokeblack"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bestseller1"
+            app:layout_constraintWidth_percent=".7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:text="15 Kitchen Order \n in a month \n For your business \n at Rupees 3000/- "
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
+        android:id="@+id/package2Border"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_corner20dp_stroke_white"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnContinue"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/package1Border"
+        app:layout_constraintWidth_percent=".7">
+
+        <TextView
+            android:id="@+id/bestseller2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Best Seller"
+            android:textColor="@color/logoBrown"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:elevation="20dp"
+            android:id="@+id/package2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_corner3dp_strokeblack"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bestseller2"
+            app:layout_constraintWidth_percent=".7">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:text="unlimited Kitchen Order \n per year \n For your Business \n at Rupees 12000/- "
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <Button
+        android:visibility="gone"
         android:id="@+id/btnContinue"
-        android:textStyle="bold"
-        android:text="Continue"
-        android:drawableRight="@drawable/next_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="15dp"
         android:background="@drawable/shape_corner20dp_stroke_white"
-        android:layout_height="0dp"
-        android:layout_width="0dp"
+        android:backgroundTint="@color/dotRedLight"
+        android:drawableRight="@drawable/next_logo"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".06"
-        app:layout_constraintWidth_percent=".4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintWidth_percent=".4" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

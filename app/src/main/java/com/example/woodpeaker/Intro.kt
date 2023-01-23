@@ -3,9 +3,7 @@ package com.example.woodpeaker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.woodpeaker.databinding.ActivityIntroBinding
 
@@ -19,7 +17,7 @@ class Intro : AppCompatActivity() {
         setContentView(binding.root)
 
         val images= listOf(R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.five,R.drawable.four)
-        binding.viewpager2.adapter=ViewPagerAdapter(images)
+        binding.viewpager2.adapter=ViewPagerIntroAdapter(images)
 
         binding.viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(

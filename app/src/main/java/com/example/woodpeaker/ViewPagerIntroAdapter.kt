@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 
-class ViewPagerAdapter(val images:List<Int>):RecyclerView.Adapter<ViewPagerAdapter.ViewHolder>() {
+class ViewPagerIntroAdapter(val images:List<Int>):RecyclerView.Adapter<ViewPagerIntroAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

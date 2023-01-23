@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
-        android:padding="30sp"
+        android:padding="15dp"
         android:text="Get Kitchen measurement completely Automated"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -45,11 +45,10 @@
         android:id="@+id/choose_user_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent=".5"
-        app:layout_constraintTop_toBottomOf="@id/text_view1"
+        app:layout_constraintHeight_percent=".68"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnContinue">
+        app:layout_constraintTop_toBottomOf="@id/text_view1">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -57,54 +56,108 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_begin="206dp" />
+
         <TextView
             android:id="@+id/text_view3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/logoBrown"
-            android:text="who are you?"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:autoSizeTextType="uniform"
+            android:text="who are you?"
+            android:textColor="@color/logoBrown"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textSize="20sp"/>
-        <TextView
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/text_view3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/dotRedLight"
-            android:text="choose one"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="15sp"/>
-        <ImageButton
+            app:layout_constraintTop_toTopOf="parent" />
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="choose one"-->
+<!--            android:textColor="@color/dotRedLight"-->
+<!--            android:textSize="15sp"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/text_view3" />-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="10dp"
             android:id="@+id/bulk_user"
-            android:elevation="20dp"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent=".44"
-            app:layout_constraintWidth_percent=".47"
+            android:elevation="20dp"
             android:scaleType="centerCrop"
+            android:background="@drawable/shape_corner15dp_strokeshadow1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".44"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/merchant_logo"/>
-        <ImageButton
+            app:layout_constraintBottom_toTopOf="@id/single_user"
+            app:layout_constraintWidth_percent=".8">
+            <ImageView
+                android:id="@+id/image_view1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent=".85"
+                android:src="@drawable/merchant_logo"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Merchant"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:textAlignment="center"
+                android:textColor="@color/logoBrown"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/single_user"
-            android:elevation="20dp"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent=".44"
-            app:layout_constraintWidth_percent=".47"
+            android:elevation="20dp"
             android:scaleType="centerCrop"
+            android:background="@drawable/shape_corner15dp_strokeshadow1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".44"
             app:layout_constraintLeft_toRightOf="@id/guideline2"
             app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bulk_user"
+            app:layout_constraintWidth_percent=".8" >
+
+        <ImageView
+            android:id="@+id/image_view2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.85"
+            android:src="@drawable/customer_logo"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:src="@drawable/customer_logo"/>
+            app:layout_constraintLeft_toLeftOf="parent"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Customer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:textAlignment="center"
+                android:textColor="@color/logoBrown"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -141,7 +194,7 @@
             android:id="@+id/package3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_corner3dp_strokeblack"
+            android:background="@drawable/shape_corner15dp_strokeblack3dp"
             android:padding="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent=".9"
@@ -199,7 +252,7 @@
             android:id="@+id/package1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_corner3dp_strokeblack"
+            android:background="@drawable/shape_corner15dp_strokeblack3dp"
             android:padding="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent=".9"
@@ -266,7 +319,7 @@
             android:id="@+id/package2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_corner3dp_strokeblack"
+            android:background="@drawable/shape_corner15dp_strokeblack3dp"
             android:padding="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent=".9"
@@ -292,6 +345,42 @@
 
 
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".69"
+        app:layout_constraintWidth_percent="0.85"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/viewpager2"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -306,18 +395,15 @@
         android:id="@+id/btnContinue"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/shape_corner20dp_stroke_white"
+        android:background="@drawable/overley_transparent"
         android:backgroundTint="@color/dotRedLight"
         android:drawableRight="@drawable/next_logo"
-        android:text="Continue"
-        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_percent=".06"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintWidth_percent=".4" />
+        app:layout_constraintWidth_percent=".8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

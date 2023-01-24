@@ -16,6 +16,7 @@
     <color name="lv2">#e5cdb3</color>
     <color name="lv345">#ffffff</color>
     <color name="shadow">#CFCFCF</color>
+    <color name="shadowlight">#E8E6E6</color>
 
 
 </resources>

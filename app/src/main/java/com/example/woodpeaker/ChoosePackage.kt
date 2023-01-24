@@ -24,6 +24,11 @@ class ChoosePackage : AppCompatActivity() {
         adapter= ViewPagerPackageAdapter()
         binding.viewpager2?.adapter =adapter
 
+        binding.btnContinue.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(applicationContext, Login::class.java))
+        })
+        binding.btnContinue.visibility=View.VISIBLE
+
         binding.singleUser.setOnClickListener(View.OnClickListener { singleUserfunc() })
         binding.bulkUser.setOnClickListener(View.OnClickListener { bulkUserfunc() })
 
@@ -73,9 +78,6 @@ class ChoosePackage : AppCompatActivity() {
         binding.viewpager2?.visibility=View.VISIBLE
         flag=2
         backpresscount=0
-        binding.btnContinue.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(applicationContext, Login::class.java))
-        })
         binding.btnContinue.visibility=View.VISIBLE
 
     }
@@ -86,26 +88,15 @@ class ChoosePackage : AppCompatActivity() {
         when(binding.viewpager2?.currentItem){
             0->{
                 if(flag==1) {
-                    binding.btnContinue.visibility=View.VISIBLE
-                    binding.btnContinue.setOnClickListener(View.OnClickListener {
-                        startActivity(Intent(applicationContext, Login::class.java))
-                    })
-
+                    // send data to intent according package choosed
                 }else if(flag==2) {
-                    binding.btnContinue.visibility=View.VISIBLE
-                    binding.btnContinue.setOnClickListener(View.OnClickListener {
-                        startActivity(Intent(applicationContext, Login::class.java))
-                    })
+                    // send data to intent according package choosed
                 }
                 else{
-                    binding.btnContinue.visibility=View.VISIBLE
                 }
             }
             1-> {
-                binding.btnContinue.setOnClickListener(View.OnClickListener {
-                    startActivity(Intent(applicationContext, Login::class.java))
-                    binding.btnContinue.visibility=View.VISIBLE
-                })
+
             }
         }
     }
@@ -118,7 +109,7 @@ class ChoosePackage : AppCompatActivity() {
 //                binding.package1Border.visibility=View.GONE
 //                binding.package2Border.visibility=View.GONE
 //                binding.package3Border.visibility=View.GONE
-                binding.btnContinue.visibility=View.GONE
+//                binding.btnContinue.visibility=View.GONE
         }else{
             super.onBackPressed()
             backpresscount=0

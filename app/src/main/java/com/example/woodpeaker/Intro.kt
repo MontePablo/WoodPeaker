@@ -16,7 +16,7 @@ class Intro : AppCompatActivity() {
         binding= ActivityIntroBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val images= listOf(R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.five,R.drawable.four)
+        val images= listOf(R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.five)
         binding.viewpager2.adapter=ViewPagerIntroAdapter(images)
 
         binding.viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -41,7 +41,7 @@ class Intro : AppCompatActivity() {
         })
 
         binding.exitFromViewpager.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(applicationContext, ChoosePackage::class.java))
+            startActivity(Intent(applicationContext, CustomerType::class.java))
         })
     }
     fun changeLvDotColour(){
@@ -52,7 +52,6 @@ class Intro : AppCompatActivity() {
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv4.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
-                binding.lv5.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.exitFromViewpager.visibility=View.GONE
             }
             1->{
@@ -61,7 +60,6 @@ class Intro : AppCompatActivity() {
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedDeep))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv4.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
-                binding.lv5.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.exitFromViewpager.visibility=View.GONE
             }
             2->{
@@ -70,7 +68,6 @@ class Intro : AppCompatActivity() {
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedDeep))
                 binding.lv4.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
-                binding.lv5.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.exitFromViewpager.visibility=View.GONE
 
             }
@@ -80,7 +77,6 @@ class Intro : AppCompatActivity() {
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv4.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedDeep))
-                binding.lv5.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.exitFromViewpager.visibility=View.VISIBLE
             }
             4->{
@@ -89,7 +85,6 @@ class Intro : AppCompatActivity() {
                 binding.lv2.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv3.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
                 binding.lv4.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedLight))
-                binding.lv5.setBackgroundColor(applicationContext.resources.getColor(R.color.dotRedDeep))
                 binding.exitFromViewpager.visibility=View.VISIBLE
             }
         }

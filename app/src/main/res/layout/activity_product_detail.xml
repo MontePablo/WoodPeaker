@@ -66,8 +66,8 @@
 
             <Button
                 android:id="@+id/colRed"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="14dp"
+                android:layout_height="18dp"
                 android:layout_margin="15dp"
                 android:background="@color/dotRedDeep"
                 android:elevation="5dp"

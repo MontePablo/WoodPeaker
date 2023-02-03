@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Woodpeaker"
         tools:targetApi="31">
         <activity
+            android:name=".ProductsSurf"
+            android:exported="false" />
+        <activity
             android:name=".ChooseShape"
             android:exported="false" />
         <activity

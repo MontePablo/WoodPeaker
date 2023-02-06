@@ -12,10 +12,11 @@ import com.example.woodpeaker.R
 import com.example.woodpeaker.models.Product
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
+import java.lang.invoke.ConstantCallSite
 
-class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:GigsFunctions) :
+class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFuntions) :
     FirestoreRecyclerAdapter<Product, GigsAdapter.ViewHolder>(options) {
-     var listener:GigsFunctions
+     var listener:productFuntions
     init {
         this.listener=listener
     }
@@ -29,49 +30,10 @@ class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:GigsFunct
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: Product) {
         holder.title.text=model.title
         holder.price.text=model.price
-        model.images.values
-        Glide.with(holder.image.context).load().into(holder.image)
-        holder.headline.text=model.title
-        Glide.with(holder.image.context).load(model.images[0]).into(holder.image)
-        Glide.with(holder.userImage.context).load(model.userImage).into(holder.userImage)
-        holder.userRating.text=model.avgRating.toString()
-        var priceStarting=Integer.MAX_VALUE
-        for(m in model.packages){
-            if(m.price.toInt() < priceStarting) {
-                priceStarting = m.price.toInt()
-            }
-        }
-        holder.price.text=priceStarting.toString()
-        holder.unit.text=model.packages[0].unit
-        holder.userTotalRating.text=model.ratingCount.toString()
-        holder.profession.text=model.profession
-        holder.userName.text=model.name
-        if(model.ratingCount.isNullOrBlank())
-            holder.gigRating.rating=5F
-        else
-            holder.gigRating.rating=model.ratingCount.toFloat()
-        holder.address.text=model.address
+        val images=model.images.values as ArrayList<ArrayList<String>>
+        Glide.with(holder.image.context).load(images.get(0).get(0)).into(holder.image)
 
-        val snapshots: ObservableSnapshotArray<Gig> = snapshots
-        val gigId = snapshots.getSnapshot(holder.bindingAdapterPosition).id
-        if(model.saveList.contains(FirebaseDao.auth.uid)){
-            holder.save.setImageDrawable(ContextCompat.getDrawable(holder.save.getContext(),R.drawable.logo_saved))
-        }else{
-            holder.save.setImageDrawable(ContextCompat.getDrawable(holder.save.getContext(),R.drawable.logo_save))
-        }
-        holder.save.setOnClickListener(View.OnClickListener {
-            if(model.saveList.contains(FirebaseDao.auth.uid)){
-                GigDao.removeSaved(gigId)
-                holder.save.setImageDrawable(ContextCompat.getDrawable(holder.save.getContext(),R.drawable.logo_save))
-            }else{
-                GigDao.saveGig(gigId)
-                holder.save.setImageDrawable(ContextCompat.getDrawable(holder.save.getContext(),R.drawable.logo_saved))
-            }
-        })
-        holder.hire.setOnClickListener(View.OnClickListener {
-            listener.gigHire(model)
-        })
-        holder.root.setOnClickListener(View.OnClickListener { listener.gigClick(model) })
+        holder.root.setOnClickListener(View.OnClickListener { listener.productClick(model) })
     }
 
 
@@ -80,10 +42,9 @@ class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:GigsFunct
         var image=view.findViewById<ImageView>(R.id.item_product_image)
         var title=view.findViewById<TextView>(R.id.item_product_title)
         var price=view.findViewById<TextView>(R.id.item_product_price)
+        var root=view.findViewById<ConstraintLayout>(R.id.item_product_root_view)
     }
 }
-interface GigsFunctions{
-//    fun gigSave(gigId:String)
-    fun gigHire(gig:Gig)
-    fun gigClick(gig:Gig)
+interface productFuntions{
+    fun productClick(product:Product)
 }

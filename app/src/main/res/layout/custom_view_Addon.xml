@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="250dp"
+    android:layout_margin="10dp"
+    android:elevation="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shape_corner20dp_stroke_white">
+
+    <ImageView
+        android:layout_margin="10dp"
+        android:scaleType="fitCenter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".7"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/addon_image"/>
+    <TextView
+        android:textColor="#767676"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Top sack"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addon_image"
+        android:id="@+id/adddon_name"/>
+    <TextView
+        android:layout_margin="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="#2A2A2A"
+        android:text="25000"
+        android:textSize="25sp"
+        android:id="@+id/addon_price"
+        app:layout_constraintLeft_toRightOf="@id/textview4"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+        android:id="@+id/textview4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/logoBrown"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/adddon_name"
+        android:textSize="20sp"
+        android:layout_margin="5dp"
+        android:text="₹"/>
+    <Button
+        android:id="@+id/addon_add"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/shape_corner50dp"
+        android:backgroundTint="@color/logoBrown"
+        android:textColor="@color/white"
+        android:drawableTint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".12"
+        android:elevation="10dp"
+        android:layout_margin="5dp"
+        android:textStyle="bold"
+        android:text="Add"
+        android:textAllCaps="false"
+        android:paddingRight="10dp"
+        android:drawableRight="@drawable/logo_add"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

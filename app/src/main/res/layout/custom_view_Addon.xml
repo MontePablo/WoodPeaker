@@ -8,8 +8,8 @@
     android:background="@drawable/shape_corner20dp_stroke_white">
 
     <ImageView
-        android:layout_margin="10dp"
-        android:scaleType="fitCenter"
+        android:layout_margin="8dp"
+        android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent=".7"
@@ -49,24 +49,45 @@
         android:textSize="20sp"
         android:layout_margin="5dp"
         android:text="₹"/>
-    <Button
+    <ImageButton
+        android:layout_margin="10dp"
+        android:elevation="10dp"
+        android:src="@drawable/logo_plus"
         android:id="@+id/addon_add"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@drawable/shape_corner50dp"
         android:backgroundTint="@color/logoBrown"
         android:textColor="@color/white"
-        android:drawableTint="@color/white"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent=".12"
+        android:layout_height="wrap_content"
+        app:tint="@color/white" />
+    <TextView
         android:elevation="10dp"
-        android:layout_margin="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_percent=".2"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toLeftOf="@id/addon_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="1"
+        android:textSize="20sp"
+        android:id="@+id/addon_quantity"
         android:textStyle="bold"
-        android:text="Add"
-        android:textAllCaps="false"
-        android:paddingRight="10dp"
-        android:drawableRight="@drawable/logo_add"/>
+        android:textAlignment="center"/>
+    <ImageButton
+        android:layout_marginBottom="10dp"
+        android:elevation="10dp"
+        android:src="@drawable/logo_minus"
+        android:id="@+id/addon_remove"
+        app:layout_constraintRight_toLeftOf="@id/addon_quantity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/shape_corner50dp"
+        android:backgroundTint="@color/logoBrown"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:tint="@color/white" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

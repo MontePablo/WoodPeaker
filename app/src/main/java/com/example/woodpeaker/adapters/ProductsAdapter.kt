@@ -5,14 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.woodpeaker.R
 import com.example.woodpeaker.models.Product
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import java.lang.invoke.ConstantCallSite
+import com.firebase.ui.firestore.ObservableSnapshotArray
 
 class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFuntions) :
     FirestoreRecyclerAdapter<Product, GigsAdapter.ViewHolder>(options) {
@@ -33,7 +32,10 @@ class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFu
         val images=model.images.values as ArrayList<ArrayList<String>>
         Glide.with(holder.image.context).load(images.get(0).get(0)).into(holder.image)
 
-        holder.root.setOnClickListener(View.OnClickListener { listener.productClick(model) })
+        val snapshots: ObservableSnapshotArray<Product> = snapshots
+        val productId = snapshots.getSnapshot(holder.bindingAdapterPosition).id
+        holder.root.setOnClickListener(View.OnClickListener { listener.productClick(model,productId) })
+
     }
 
 
@@ -46,5 +48,5 @@ class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFu
     }
 }
 interface productFuntions{
-    fun productClick(product:Product)
+    fun productClick(product: Product, productId: String,)
 }

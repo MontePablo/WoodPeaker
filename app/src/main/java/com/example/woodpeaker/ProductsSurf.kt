@@ -20,10 +20,12 @@ class ProductsSurf : AppCompatActivity(),productFuntions {
 
     }
 
-    override fun productClick(product: Product) {
+
+    override fun productClick(product: Product, productId: String) {
         val gson = Gson()
         val intent = Intent(applicationContext, ProductDetail::class.java)
         intent.putExtra("product", gson.toJson(product))
+        intent.putExtra("productId", productId)
         startActivity(intent)
     }
 }

@@ -6,11 +6,14 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.example.woodpeaker.adapters.SliderAdapter
 import com.example.woodpeaker.databinding.ActivityProductDetailBinding
+import com.example.woodpeaker.databinding.CustomViewAddonBinding
 import com.example.woodpeaker.databinding.CustomViewRatingBinding
 import com.example.woodpeaker.models.Product
 import com.google.gson.Gson
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
+import java.util.*
+import kotlin.collections.ArrayList
 
 object ProductDetail : AppCompatActivity() {
     lateinit var binding:ActivityProductDetailBinding
@@ -22,14 +25,13 @@ object ProductDetail : AppCompatActivity() {
 //    lateinit var  greenPics:ArrayList<String>
 //    lateinit var  yellowPics:ArrayList<String>
 //    lateinit var  whitePics:ArrayList<String>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         var product = Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
-
+        val productId=intent.getStringExtra("productId")
         var slideAdapter=SliderAdapter()
         binding.sliderView.setSliderAdapter(slideAdapter)
         binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
@@ -65,7 +67,7 @@ object ProductDetail : AppCompatActivity() {
 
         binding.productName.text=product.title
         binding.buynow.setOnClickListener(View.OnClickListener {
-
+            BuyBtnPressDialog.process(this,this,product,layoutInflater,productId)
         })
         binding.tryon.setOnClickListener(View.OnClickListener {
 
@@ -74,6 +76,7 @@ object ProductDetail : AppCompatActivity() {
 
         addFeatures(product)
         addReviews(product)
+        addAddons(product)
 
 
     }
@@ -99,13 +102,41 @@ object ProductDetail : AppCompatActivity() {
         }
         binding.features.text=s
     }
-    fun addAddons(product:Product){
+    fun addAddons(product: Product){
+        val viewBinding=CustomViewAddonBinding.inflate(layoutInflater)
+
         for(f in product.addons){
             val name=f["Name"] as String
             val price=f["Price"] as String
             val image=f["ImageLink"] as String
-        }
-        val viewBinding=
-    }
+            var quantity=f.get("Quantity") as String
+            Glide.with(this).load(image).into(viewBinding.addonImage)
+            viewBinding.addonPrice.text=price
+            viewBinding.adddonName.text=name
+            viewBinding.addonAdd.setOnClickListener(View.OnClickListener {
 
+                quantity=(quantity.toInt()+1).toString()
+                viewBinding.addonQuantity.text=quantity
+                for(a in product.addons){
+                    if(a.get("Name") as String==name){
+                        a.replace("Quantity",quantity as Objects)
+                    }
+                }
+            })
+            viewBinding.addonRemove.setOnClickListener(View.OnClickListener {
+                if(quantity.toInt()>=1){
+                    quantity=(quantity.toInt()-1).toString()
+                    viewBinding.addonQuantity.text=quantity
+
+                    for(a in product.addons){
+                        if(a.get("Name") as String==name){
+                            a.replace("Quantity",quantity as Objects)
+                        }
+                    }
+                }
+
+            })
+            binding.addonLayout.addView(viewBinding.root)
+        }
+    }
 }

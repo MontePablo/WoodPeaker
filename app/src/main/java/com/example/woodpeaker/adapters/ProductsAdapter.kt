@@ -33,8 +33,8 @@ class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFu
         Glide.with(holder.image.context).load(images.get(0).get(0)).into(holder.image)
 
         val snapshots: ObservableSnapshotArray<Product> = snapshots
-        val productId = snapshots.getSnapshot(holder.bindingAdapterPosition).id
-        holder.root.setOnClickListener(View.OnClickListener { listener.productClick(model,productId) })
+        model.productId=snapshots.getSnapshot(holder.bindingAdapterPosition).id
+        holder.root.setOnClickListener(View.OnClickListener { listener.productClick(model) })
 
     }
 
@@ -48,5 +48,5 @@ class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFu
     }
 }
 interface productFuntions{
-    fun productClick(product: Product, productId: String,)
+    fun productClick(product: Product)
 }

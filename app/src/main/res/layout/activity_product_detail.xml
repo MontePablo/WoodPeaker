@@ -7,20 +7,6 @@
     android:background="@color/shadowlight"
     tools:context=".ProductDetail">
 
-    <!--    <Button-->
-<!--        android:backgroundTint="@color/shadow"-->
-<!--        android:elevation="15dp"-->
-<!--        android:background="@drawable/shape_corner20dp_stroke_white"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintHeight_percent=".06"-->
-<!--        app:layout_constraintWidth_percent="0.47"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        android:layout_margin="10dp"-->
-<!--        android:text="Add to Cart"-->
-<!--        android:textAllCaps="false"-->
-<!--        android:id="@+id/addtocart"/>-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -32,8 +18,8 @@
         app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/sliderView"
@@ -153,7 +139,6 @@
                 app:layout_constraintTop_toBottomOf="@id/colBlack" />
 
             <TextView
-                app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/features"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,6 +146,7 @@
                 android:text="Features"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tryon" />
 
             <TextView
@@ -173,7 +159,6 @@
                 app:layout_constraintTop_toBottomOf="@id/features" />
 
             <TextView
-                app:layout_constraintRight_toRightOf="parent"
                 android:id="@+id/textview1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -182,33 +167,61 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/reviews_layout" />
+
             <LinearLayout
                 android:id="@+id/addon_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/textview1"/>
+                app:layout_constraintTop_toBottomOf="@id/textview1" />
+
             <TextView
+                android:id="@+id/textview3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/textview3"
+                android:text="Reviews"
+                android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/addon_layout"
-                android:textStyle="bold"
-                android:text="Reviews"/>
+                app:layout_constraintTop_toBottomOf="@id/addon_layout" />
+
             <LinearLayout
                 android:id="@+id/reviews_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/textview3"/>
+                app:layout_constraintTop_toBottomOf="@id/textview3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="10dp"
+        android:text="2000"
+        android:textColor="#2A2A2A"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/textview4" />
+    <TextView
+        android:id="@+id/textview4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/logoBrown"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="20sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="30dp"
+        android:text="₹"/>
     <Button
         android:textColor="@color/white"
         android:backgroundTint="@color/dotRedLight"
@@ -221,10 +234,17 @@
         app:layout_constraintHeight_percent=".06"
         app:layout_constraintWidth_percent="0.67"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="10dp"
         android:id="@+id/buynow"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="/ Sq.foot"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/price"
+        android:layout_marginLeft="40dp"/>
 
 
 

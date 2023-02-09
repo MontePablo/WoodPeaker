@@ -8,6 +8,7 @@ import kotlin.collections.HashMap
     var title=""
     var price=""
     var shape=""
+    var productId=""
     var features=ArrayList<String>()
     var description=""
     var images=HashMap<String,Objects>() //HashMap<String,HashMap<String,Objects>>()

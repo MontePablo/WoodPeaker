@@ -2,14 +2,18 @@ package com.example.woodpeaker
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import com.example.woodpeaker.ProductDetail.startActivity
 import com.example.woodpeaker.databinding.OrderClickFragViewBinding
 import com.example.woodpeaker.models.Product
+import com.google.gson.Gson
 
-object BuyBtnPressDialog:  {
+object BuyBtnPressDialog  {
     lateinit var activity: Activity
     lateinit var product: Product
     lateinit var context:Context
@@ -18,11 +22,10 @@ object BuyBtnPressDialog:  {
     fun process(
         activity: Activity,
         context: Context,
-        gig: Product?,
-        layoutInflater: LayoutInflater,
-        productId: String?,) {
+        product: Product?,
+        layoutInflater: LayoutInflater) {
         Log.d("TAG","main func start")
-        Log.d("TAG","gig: ${gig!!.title}")
+        Log.d("TAG","product: ${product!!.title}")
         Log.d("TAG","context:$context")
         Log.d("TAG","activity: $activity")
 
@@ -36,8 +39,18 @@ object BuyBtnPressDialog:  {
         val dialog=dialogBuilder.create()
         dialog.show()
 
-        viewBinding.btnAuto.setOnClickListener(View.OnClickListener {  })
-        viewBinding.btnManual.setOnClickListener(View.OnClickListener {  })
+        viewBinding.btnAuto.setOnClickListener(View.OnClickListener {
+            val gson = Gson()
+            val intent = Intent(context, AutoMeasure::class.java)
+            intent.putExtra("product", gson.toJson(product))
+            startActivity(intent)
+        })
+        viewBinding.btnManual.setOnClickListener(View.OnClickListener {
+            val gson = Gson()
+            val intent = Intent(context, ManualMeasure::class.java)
+            intent.putExtra("product", gson.toJson(product))
+            startActivity(intent)
+        })
     }
 
 }

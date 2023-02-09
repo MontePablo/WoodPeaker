@@ -31,7 +31,6 @@ object ProductDetail : AppCompatActivity() {
         setContentView(binding.root)
 
         var product = Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
-        val productId=intent.getStringExtra("productId")
         var slideAdapter=SliderAdapter()
         binding.sliderView.setSliderAdapter(slideAdapter)
         binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
@@ -67,7 +66,7 @@ object ProductDetail : AppCompatActivity() {
 
         binding.productName.text=product.title
         binding.buynow.setOnClickListener(View.OnClickListener {
-            BuyBtnPressDialog.process(this,this,product,layoutInflater,productId)
+            BuyBtnPressDialog.process(this,this,product,layoutInflater)
         })
         binding.tryon.setOnClickListener(View.OnClickListener {
 

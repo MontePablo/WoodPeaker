@@ -19,42 +19,60 @@ class ManualMeasure : AppCompatActivity() {
         when(product.shape){
             "I shape kitchen" ->{
                 binding.l2layout.visibility=View.VISIBLE
-                binding.w1layout.visibility=View.VISIBLE
             }
             "Island shape kitchen" ->{
                 binding.l1layout.visibility=View.VISIBLE
                 binding.l2layout.visibility=View.VISIBLE
                 binding.l3layout.visibility=View.VISIBLE
                 binding.l4layout.visibility=View.VISIBLE
-                binding.w1layout.visibility=View.VISIBLE
-                binding.w2layout.visibility=View.VISIBLE
 
             }
             "U shape kitchen" ->{
                 binding.l1layout.visibility=View.VISIBLE
                 binding.l2layout.visibility=View.VISIBLE
                 binding.l3layout.visibility=View.VISIBLE
-                binding.w1layout.visibility=View.VISIBLE
             }
             "L shape kitchen" ->{
                 binding.l1layout.visibility=View.VISIBLE
                 binding.l2layout.visibility=View.VISIBLE
-                binding.w1layout.visibility=View.VISIBLE
-
             }
         }
 
         binding.calculate.setOnClickListener(View.OnClickListener {
+            calculate(product)
 
         })
         binding.btnContinue.setOnClickListener(View.OnClickListener {
 
         })
 
+        binding.btnQuestion.setOnClickListener(View.OnClickListener {
+            ManualMeasureQuestionDialog.process(this, this,layoutInflater)
+        })
 
-        fun calculateIshape(){
+    }
+    fun calculate(product: Product){
+        when (product.shape){
+            "I shape kitchen" ->{
+                val c=product.price.toInt() * binding.l2.text.toString().toInt()
+                binding.price.text=c.toString()
+            }
+            "Island shape kitchen" ->{
+                val d=binding.l1.text.toString().toInt()+binding.l2.text.toString().toInt()+binding.l3.text.toString().toInt()+binding.l4.text.toString().toInt()
+                val c=product.price.toInt() * d
+                binding.price.text=c.toString()
 
+            }
+            "U shape kitchen" ->{
+                val d=binding.l1.text.toString().toInt()+binding.l2.text.toString().toInt()+binding.l3.text.toString().toInt()
+                val c=product.price.toInt() * d
+                binding.price.text=c.toString()
+            }
+            "L shape kitchen" ->{
+                val d=binding.l1.text.toString().toInt()+binding.l2.text.toString().toInt()
+                val c=product.price.toInt() * d
+                binding.price.text=c.toString()
+            }
         }
-
     }
 }

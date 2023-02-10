@@ -7,13 +7,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import com.example.woodpeaker.ProductDetail.startActivity
 import com.example.woodpeaker.databinding.OrderClickFragViewBinding
+import com.example.woodpeaker.models.Order
 import com.example.woodpeaker.models.Product
 import com.google.gson.Gson
+import java.util.*
 
-object BuyBtnPressDialog  {
+object OrderClickDialog  {
     lateinit var activity: Activity
     lateinit var product: Product
     lateinit var context:Context
@@ -24,10 +25,11 @@ object BuyBtnPressDialog  {
         context: Context,
         product: Product?,
         layoutInflater: LayoutInflater) {
-        Log.d("TAG","main func start")
-        Log.d("TAG","product: ${product!!.title}")
-        Log.d("TAG","context:$context")
-        Log.d("TAG","activity: $activity")
+
+        var order= Order()
+        order.shape=product!!.shape
+        order.productId=product.productId
+
 
         this.activity=activity
         this.product= product!!
@@ -50,6 +52,9 @@ object BuyBtnPressDialog  {
             val intent = Intent(context, ManualMeasure::class.java)
             intent.putExtra("product", gson.toJson(product))
             startActivity(intent)
+        })
+        viewBinding.btnQuestion.setOnClickListener(View.OnClickListener {
+            WallQuestionDialog.process(activity,context,layoutInflater)
         })
     }
 

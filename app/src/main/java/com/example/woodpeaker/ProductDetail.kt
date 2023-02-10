@@ -66,7 +66,7 @@ object ProductDetail : AppCompatActivity() {
 
         binding.productName.text=product.title
         binding.buynow.setOnClickListener(View.OnClickListener {
-            BuyBtnPressDialog.process(this,this,product,layoutInflater)
+            OrderClickDialog.process(this,this,product,layoutInflater)
         })
         binding.tryon.setOnClickListener(View.OnClickListener {
 

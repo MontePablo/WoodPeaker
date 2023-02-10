@@ -14,6 +14,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+        <ImageButton
+            android:id="@+id/btnQuestion"
+            android:layout_margin="20dp"
+            android:elevation="20dp"
+            android:background="@drawable/shape_corner100dp_strokeshadow2dp"
+            android:src="@drawable/baseline_question_mark_24"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
         <LinearLayout
             android:id="@+id/l1layout"
             android:layout_width="wrap_content"
@@ -67,34 +75,6 @@
                 android:layout_height="wrap_content"
                 android:hint="L4 length"
                 android:id="@+id/l4"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="foot"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/w1layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/w1"
-                android:hint="W1 Width"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="foot"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/w2layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/w2"
-                android:hint="W2 Width"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

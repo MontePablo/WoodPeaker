@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.example.woodpeaker.ProductDetail.startActivity
+import com.example.woodpeaker.daos.FirebaseDao
 import com.example.woodpeaker.databinding.OrderClickFragViewBinding
 import com.example.woodpeaker.models.Order
 import com.example.woodpeaker.models.Product
@@ -29,7 +30,21 @@ object OrderClickDialog  {
         var order= Order()
         order.shape=product!!.shape
         order.productId=product.productId
-
+        order.clientId=FirebaseDao.auth.uid!!
+        if (product.images.whiteLink.isNotEmpty()){
+            order.image=product.images.whiteLink[0]
+        }else if(product.images.redLink.isNotEmpty()){
+            order.image=product.images.redLink.get(0)
+        }else if(product.images.blueLink.isNotEmpty()){
+            order.image=product.images.blueLink.get(0)
+        }else if(product.images.blackLink.isNotEmpty()){
+            order.image=product.images.blackLink.get(0)
+        }else if(product.images.yellowLink.isNotEmpty()){
+            order.image=product.images.yellowLink.get(0)
+        }else if(product.images.whiteLink.isNotEmpty()){
+            order.image=product.images.whiteLink.get(0)
+        }
+        order.title=product.title
 
         this.activity=activity
         this.product= product!!
@@ -44,13 +59,13 @@ object OrderClickDialog  {
         viewBinding.btnAuto.setOnClickListener(View.OnClickListener {
             val gson = Gson()
             val intent = Intent(context, AutoMeasure::class.java)
-            intent.putExtra("product", gson.toJson(product))
+            intent.putExtra("order", gson.toJson(order))
             startActivity(intent)
         })
         viewBinding.btnManual.setOnClickListener(View.OnClickListener {
             val gson = Gson()
             val intent = Intent(context, ManualMeasure::class.java)
-            intent.putExtra("product", gson.toJson(product))
+            intent.putExtra("order", gson.toJson(order))
             startActivity(intent)
         })
         viewBinding.btnQuestion.setOnClickListener(View.OnClickListener {

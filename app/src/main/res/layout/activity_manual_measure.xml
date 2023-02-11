@@ -103,6 +103,24 @@
             android:text="Continue"
             android:id="@+id/btn_continue"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_layout"
+            android:orientation="horizontal" />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/retryToast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="#BC0202"
+            android:text="uplaod failed, kindly press the retry button of the image!"/>
+        <Button
+            android:id="@+id/addImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="add image of the front view in your kitchen"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

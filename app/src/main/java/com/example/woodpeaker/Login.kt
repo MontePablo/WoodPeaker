@@ -103,10 +103,10 @@ class Login : AppCompatActivity() {
                 }else{
                     val user= User()
                     user.id=firebaseUser.uid
-                    user.name= firebaseUser.displayName!!
-                    user.email= firebaseUser.email!!
+                    user.name=firebaseUser.displayName!!
+                    user.email=firebaseUser.email!!
                     UserDao.addUser(user)
-                    startActivity(Intent(this, ProfileGeneral::class.java))
+                    startActivity(Intent(this, Profile::class.java))
                 }
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

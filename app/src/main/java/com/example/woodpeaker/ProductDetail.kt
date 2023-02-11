@@ -17,52 +17,40 @@ import kotlin.collections.ArrayList
 
 object ProductDetail : AppCompatActivity() {
     lateinit var binding:ActivityProductDetailBinding
-//    lateinit var product:Product
-//    lateinit var slideAdapter: SliderAdapter
-//    lateinit var  blackPics:ArrayList<String>
-//    lateinit var  bluePics:ArrayList<String>
-//    lateinit var  redPics:ArrayList<String>
-//    lateinit var  greenPics:ArrayList<String>
-//    lateinit var  yellowPics:ArrayList<String>
-//    lateinit var  whitePics:ArrayList<String>
+
+    lateinit var product:Product
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var product = Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
+        product =Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
         var slideAdapter=SliderAdapter()
         binding.sliderView.setSliderAdapter(slideAdapter)
         binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
         binding.sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
         binding.sliderView.startAutoCycle()
 
-        var bluePics=product.images.get("Blue") as ArrayList<String>
-        var redPics=product.images.get("Red") as ArrayList<String>
-        var blackPics=product.images.get("Black") as ArrayList<String>
-        var yellowPics=product.images.get("Yellow") as ArrayList<String>
-        var greenPics=product.images.get("Green") as ArrayList<String>
-        var whitePics=product.images.get("White") as ArrayList<String>
+        if(product.images.redLink.isNotEmpty())
+            slideAdapter.updateData(product.images.redLink)
+        else if(product.images.whiteLink.isNotEmpty())
+            slideAdapter.updateData(product.images.whiteLink)
+        else if(product.images.blackLink.isNotEmpty())
+            slideAdapter.updateData(product.images.blackLink)
+        else if(product.images.blueLink.isNotEmpty())
+            slideAdapter.updateData(product.images.blueLink)
+        else if(product.images.greenLink.isNotEmpty())
+            slideAdapter.updateData(product.images.greenLink)
+        else if(product.images.yellowLink.isNotEmpty())
+            slideAdapter.updateData(product.images.yellowLink)
 
-        if(redPics.isNotEmpty())
-            slideAdapter.updateData(redPics)
-        else if(whitePics.isNotEmpty())
-            slideAdapter.updateData(whitePics)
-        else if(blackPics.isNotEmpty())
-            slideAdapter.updateData(blackPics)
-        else if(bluePics.isNotEmpty())
-            slideAdapter.updateData(bluePics)
-        else if(greenPics.isNotEmpty())
-            slideAdapter.updateData(greenPics)
-        else if(yellowPics.isNotEmpty())
-            slideAdapter.updateData(yellowPics)
-
-        binding.colBlack.setOnClickListener(View.OnClickListener { slideAdapter.updateData(blackPics) })
-        binding.colBlue.setOnClickListener(View.OnClickListener { slideAdapter.updateData(bluePics) })
-        binding.colGreen.setOnClickListener(View.OnClickListener { slideAdapter.updateData(greenPics) })
-        binding.colWhite.setOnClickListener(View.OnClickListener { slideAdapter.updateData(whitePics) })
-        binding.colRed.setOnClickListener(View.OnClickListener { slideAdapter.updateData(redPics) })
-        binding.colYellow.setOnClickListener(View.OnClickListener { slideAdapter.updateData(yellowPics) })
+        binding.colBlack.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.blackLink) })
+        binding.colBlue.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.blueLink) })
+        binding.colGreen.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.greenLink) })
+        binding.colWhite.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.whiteLink) })
+        binding.colRed.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.redLink) })
+        binding.colYellow.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.yellowLink) })
 
         binding.productName.text=product.title
         binding.buynow.setOnClickListener(View.OnClickListener {
@@ -73,67 +61,46 @@ object ProductDetail : AppCompatActivity() {
         })
         binding.otherDetail.text=product.description
 
-        addFeatures(product)
-        addReviews(product)
-        addAddons(product)
+        addFeatures()
+        addReviews()
+        addAddons()
 
 
     }
-    fun addReviews(product:Product){
+    fun addReviews(){
         for(rating in product!!.ratings){
-            val name=rating["name"] as String
-            val star=rating["rating"] as String
-            val comment=rating["comment"] as String
-            val date=rating["date"] as String
-
             val viewBinding=CustomViewRatingBinding.inflate(layoutInflater)
-            viewBinding.name.text=name
-            viewBinding.comment.text=comment
-            viewBinding.date.text=date
-            viewBinding.ratingBar.rating=star.toFloat()
+            viewBinding.name.text=rating.name
+            viewBinding.comment.text=rating.comment
+            viewBinding.date.text=rating.date
+            viewBinding.ratingBar.rating=rating.rating.toFloat()
             binding.reviewsLayout.addView(viewBinding.root)
         }
     }
-    fun addFeatures(product:Product){
+    fun addFeatures(){
         var s=String()
         for(f in product!!.features){
             s+=f+"\n"
         }
         binding.features.text=s
     }
-    fun addAddons(product: Product){
+    fun addAddons(){
         val viewBinding=CustomViewAddonBinding.inflate(layoutInflater)
 
         for(f in product.addons){
-            val name=f["Name"] as String
-            val price=f["Price"] as String
-            val image=f["ImageLink"] as String
-            var quantity=f.get("Quantity") as String
-            Glide.with(this).load(image).into(viewBinding.addonImage)
-            viewBinding.addonPrice.text=price
-            viewBinding.adddonName.text=name
-            viewBinding.addonAdd.setOnClickListener(View.OnClickListener {
 
-                quantity=(quantity.toInt()+1).toString()
-                viewBinding.addonQuantity.text=quantity
-                for(a in product.addons){
-                    if(a.get("Name") as String==name){
-                        a.replace("Quantity",quantity as Objects)
-                    }
-                }
+            Glide.with(this).load(f.imageLink).into(viewBinding.addonImage)
+            viewBinding.addonPrice.text=f.price
+            viewBinding.adddonName.text=f.name
+            viewBinding.addonAdd.setOnClickListener(View.OnClickListener {
+                f.quantity=(f.quantity.toInt()+1).toString()
+                viewBinding.addonQuantity.text=f.quantity
             })
             viewBinding.addonRemove.setOnClickListener(View.OnClickListener {
-                if(quantity.toInt()>=1){
-                    quantity=(quantity.toInt()-1).toString()
-                    viewBinding.addonQuantity.text=quantity
-
-                    for(a in product.addons){
-                        if(a.get("Name") as String==name){
-                            a.replace("Quantity",quantity as Objects)
-                        }
-                    }
+                if(f.quantity.toInt()>=1){
+                    f.quantity=(f.quantity.toInt()-1).toString()
+                    viewBinding.addonQuantity.text=f.quantity
                 }
-
             })
             binding.addonLayout.addView(viewBinding.root)
         }

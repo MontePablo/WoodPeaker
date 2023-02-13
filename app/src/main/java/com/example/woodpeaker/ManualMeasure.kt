@@ -23,6 +23,7 @@ import id.zelory.compressor.constraint.default
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -68,7 +69,6 @@ class ManualMeasure : AppCompatActivity() {
             getImages()
 
         })
-
         binding.btnQuestion.setOnClickListener(View.OnClickListener {
             ManualMeasureQuestionDialog.process(this, this,layoutInflater)
         })
@@ -225,73 +225,5 @@ class ManualMeasure : AppCompatActivity() {
             viewBinding.imageview.setImageResource(R.drawable.logo_retry_arrow)
             binding.retryToast.visibility=View.VISIBLE
         }
-    }
-
-
-    fun payment(amount:Float){
-        val activity: Activity = activity
-
-        val co = Checkout()
-        co.setKeyID("rzp_test_xTHEX7CRZJHVvn")
-        try {
-            val options = JSONObject()
-            options.put("name", "KaamWaale")
-            options.put("description", "Order Amount")
-            options.put("send_sms_hash", true)
-            options.put("allow_rotation", true)
-            //You can omit the image option to fetch the image from dashboard
-//            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
-            options.put("currency", "INR")
-            options.put("amount", amount*100* quantt)
-            val preFill = JSONObject()
-            preFill.put("email", "test@razorpay.com")
-            preFill.put("contact", "9876543210")
-            options.put("prefill", preFill)
-            co.open(activity, options)
-        } catch (e: Exception) {
-            Toast.makeText(activity, "Error in payment: " + e.message, Toast.LENGTH_SHORT)
-                .show()
-            Log.d(FirebaseDao.TAG,"error in payment ${e.localizedMessage}")
-            e.printStackTrace()
-        }
-        Log.d(TAG,"pay func finished")
-
-    }
-    override fun onPaymentSuccess(p0: String?) {
-        Log.d(TAG,"payment success")
-        Toast.makeText(context,"payment done! $p0",Toast.LENGTH_SHORT).show()
-        passOrder()
-    }
-    override fun onPaymentError(p0: Int, p1: String?) {
-        Log.d(TAG,"payment failed")
-        Toast.makeText(context,"payment failed!$p0",Toast.LENGTH_SHORT).show()
-    }
-    fun passOrder(){
-        var order=Order()
-        order.run {
-            quantity= quantt.toString()
-            title=gig.title
-            image=gig.images[0]
-            packInfo=gig!!.packages[packNo].description
-            packPrice=gig!!.packages[packNo].price
-            packName=gig!!.packages[packNo].title
-            users.add(FirebaseDao.auth.uid.toString())
-            users.add(gig!!.uid)
-            sellerId=gig!!.uid
-            clientId=FirebaseDao.auth.uid.toString()
-            status="not yet delivered"
-            type=gig!!.serviceType
-            val calendar: Calendar = Calendar.getInstance() // Returns instance with current date and time set
-            val formatter = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
-            dateTime=formatter.format(calendar.time)
-        }
-        OrderDao.addOrder(order)
-            .addOnSuccessListener {
-                Toast.makeText(context, "order complete!", Toast.LENGTH_SHORT).show()
-                Log.d(TAG,"order upload success")
-            }.addOnFailureListener {
-                Log.d(TAG,"order upload failed ${it.localizedMessage}")
-            }
-        ContextCompat.startActivity(context, Intent(context, Orders::class.java), null)
     }
 }

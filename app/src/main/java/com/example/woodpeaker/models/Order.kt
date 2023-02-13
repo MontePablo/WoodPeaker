@@ -1,7 +1,6 @@
 package com.example.woodpeaker.models
 
 import android.widget.ArrayAdapter
-import com.example.woodpeakeradmin.models.RoomImages
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -16,6 +15,13 @@ class Order {
     var status=""
     var clientId=""
     var shape=""
+    var paymentId=""
     var lengths=ArrayList<String>()
     var roomImages=RoomImages()
+    var addons=ArrayList<Addon>()
+    var pack="Customer"
+    var totalPrice=""
+    var finalPriceAftrDiscnt=""
+
+
 }

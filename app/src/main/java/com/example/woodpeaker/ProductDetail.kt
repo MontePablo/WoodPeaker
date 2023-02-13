@@ -1,13 +1,17 @@
 package com.example.woodpeaker
 
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.woodpeaker.adapters.SliderAdapter
+import com.example.woodpeaker.daos.FirebaseDao
+import com.example.woodpeaker.daos.UserDao
 import com.example.woodpeaker.databinding.ActivityProductDetailBinding
 import com.example.woodpeaker.databinding.CustomViewAddonBinding
 import com.example.woodpeaker.databinding.CustomViewRatingBinding
+import com.example.woodpeaker.models.Order
 import com.example.woodpeaker.models.Product
 import com.google.gson.Gson
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
@@ -19,12 +23,14 @@ object ProductDetail : AppCompatActivity() {
     lateinit var binding:ActivityProductDetailBinding
 
     lateinit var product:Product
+    lateinit var order:Order
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        order= Order()
         product =Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
         var slideAdapter=SliderAdapter()
         binding.sliderView.setSliderAdapter(slideAdapter)
@@ -54,7 +60,8 @@ object ProductDetail : AppCompatActivity() {
 
         binding.productName.text=product.title
         binding.buynow.setOnClickListener(View.OnClickListener {
-            OrderClickDialog.process(this,this,product,layoutInflater)
+            orderCreate()
+            OrderClickDialog.process(this,this, order,layoutInflater)
         })
         binding.tryon.setOnClickListener(View.OnClickListener {
 
@@ -65,8 +72,8 @@ object ProductDetail : AppCompatActivity() {
         addReviews()
         addAddons()
 
-
     }
+
     fun addReviews(){
         for(rating in product!!.ratings){
             val viewBinding=CustomViewRatingBinding.inflate(layoutInflater)
@@ -85,10 +92,9 @@ object ProductDetail : AppCompatActivity() {
         binding.features.text=s
     }
     fun addAddons(){
-        val viewBinding=CustomViewAddonBinding.inflate(layoutInflater)
 
         for(f in product.addons){
-
+            val viewBinding=CustomViewAddonBinding.inflate(layoutInflater)
             Glide.with(this).load(f.imageLink).into(viewBinding.addonImage)
             viewBinding.addonPrice.text=f.price
             viewBinding.adddonName.text=f.name
@@ -104,5 +110,29 @@ object ProductDetail : AppCompatActivity() {
             })
             binding.addonLayout.addView(viewBinding.root)
         }
+    }
+    fun orderCreate(){
+        for(f in product.addons){
+            if(f.quantity.toInt()>0){
+                order.addons.add(f)
+            }
+        }
+        order.shape=product!!.shape
+        order.productId=product.productId
+        order.clientId= FirebaseDao.auth.uid!!
+        if (product.images.whiteLink.isNotEmpty()){
+            order.image=product.images.whiteLink[0]
+        }else if(product.images.redLink.isNotEmpty()){
+            order.image=product.images.redLink.get(0)
+        }else if(product.images.blueLink.isNotEmpty()){
+            order.image=product.images.blueLink.get(0)
+        }else if(product.images.blackLink.isNotEmpty()){
+            order.image=product.images.blackLink.get(0)
+        }else if(product.images.yellowLink.isNotEmpty()){
+            order.image=product.images.yellowLink.get(0)
+        }else if(product.images.whiteLink.isNotEmpty()){
+            order.image=product.images.whiteLink.get(0)
+        }
+        order.title=product.title
     }
 }

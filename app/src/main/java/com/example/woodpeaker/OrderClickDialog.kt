@@ -24,27 +24,8 @@ object OrderClickDialog  {
     fun process(
         activity: Activity,
         context: Context,
-        product: Product?,
+        order: Order?,
         layoutInflater: LayoutInflater) {
-
-        var order= Order()
-        order.shape=product!!.shape
-        order.productId=product.productId
-        order.clientId=FirebaseDao.auth.uid!!
-        if (product.images.whiteLink.isNotEmpty()){
-            order.image=product.images.whiteLink[0]
-        }else if(product.images.redLink.isNotEmpty()){
-            order.image=product.images.redLink.get(0)
-        }else if(product.images.blueLink.isNotEmpty()){
-            order.image=product.images.blueLink.get(0)
-        }else if(product.images.blackLink.isNotEmpty()){
-            order.image=product.images.blackLink.get(0)
-        }else if(product.images.yellowLink.isNotEmpty()){
-            order.image=product.images.yellowLink.get(0)
-        }else if(product.images.whiteLink.isNotEmpty()){
-            order.image=product.images.whiteLink.get(0)
-        }
-        order.title=product.title
 
         this.activity=activity
         this.product= product!!

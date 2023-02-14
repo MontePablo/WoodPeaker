@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="Delivered"
-        android:textColor="#C63405"
+        android:textColor="#9E65E3"
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@id/textView"

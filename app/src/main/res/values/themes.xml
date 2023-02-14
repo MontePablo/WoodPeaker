@@ -37,6 +37,9 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <item name="android:fontFamily">serif</item>
+        <item name="fontFamily">serif</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -48,4 +51,6 @@
     <style name="Theme.Woodpeaker.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Woodpeaker.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 </resources>

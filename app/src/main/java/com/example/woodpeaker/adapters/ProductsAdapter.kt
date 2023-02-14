@@ -13,8 +13,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.ObservableSnapshotArray
 
-class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFuntions) :
-    FirestoreRecyclerAdapter<Product, GigsAdapter.ViewHolder>(options) {
+class ProductsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFuntions) :
+    FirestoreRecyclerAdapter<Product, ProductsAdapter.ViewHolder>(options) {
      var listener:productFuntions
     init {
         this.listener=listener
@@ -22,19 +22,34 @@ class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFu
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_products, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int, model: Product) {
         holder.title.text=model.title
         holder.price.text=model.price
-        val images=model.images.values as ArrayList<ArrayList<String>>
-        Glide.with(holder.image.context).load(images.get(0).get(0)).into(holder.image)
+        if(model.images.redLink.isNotEmpty()){
+            val images=model.images.redLink
+            Glide.with(holder.image.context).load(images[0]).into(holder.image)
+        }else if(model.images.blueLink.isNotEmpty()){
+            val images=model.images.blueLink
+            Glide.with(holder.image.context).load(images[0]).into(holder.image)
+        }else if(model.images.yellowLink.isNotEmpty()){
+            val images=model.images.yellowLink
+            Glide.with(holder.image.context).load(images[0]).into(holder.image)
+        }else if(model.images.blackLink.isNotEmpty()){
+            val images=model.images.blackLink
+            Glide.with(holder.image.context).load(images[0]).into(holder.image)
+        }else if(model.images.greenLink.isNotEmpty()){
+            val images=model.images.greenLink
+            Glide.with(holder.image.context).load(images[0]).into(holder.image)
+        }
+
 
         val snapshots: ObservableSnapshotArray<Product> = snapshots
-        model.productId=snapshots.getSnapshot(holder.bindingAdapterPosition).id
-        holder.root.setOnClickListener(View.OnClickListener { listener.productClick(model) })
+        val productId=snapshots.getSnapshot(holder.bindingAdapterPosition).id
+        holder.root.setOnClickListener(View.OnClickListener { listener.productClick(model,productId) })
 
     }
 
@@ -48,5 +63,5 @@ class GigsAdapter(options: FirestoreRecyclerOptions<Product>, listener:productFu
     }
 }
 interface productFuntions{
-    fun productClick(product: Product)
+    fun productClick(product: Product, productId: String)
 }

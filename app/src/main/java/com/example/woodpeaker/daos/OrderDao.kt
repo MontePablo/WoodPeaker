@@ -12,8 +12,8 @@ object OrderDao {
     fun getOrder(orderId: String): Task<DocumentSnapshot> {
         return reference.document(orderId).get()
     }
-    fun updateOrder(order: Order): Task<Void> {
-        return reference.document(order.orderId).set(order)
+    fun updateOrder(order: Order,id:String): Task<Void> {
+        return reference.document(id).set(order)
     }
 
 }

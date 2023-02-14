@@ -7,7 +7,6 @@ import kotlin.collections.HashMap
 
 class Order {
     var price=""
-    var orderId=""
     var productId=""
     var title=""
     var dateTime=""

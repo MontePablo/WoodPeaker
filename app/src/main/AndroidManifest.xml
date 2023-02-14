@@ -31,7 +31,7 @@
             android:name=".ManualMeasure"
             android:exported="false" />
         <activity
-            android:name=".ProductsSurf"
+            android:name=".Products"
             android:exported="false" />
         <activity
             android:name=".ChooseShape"

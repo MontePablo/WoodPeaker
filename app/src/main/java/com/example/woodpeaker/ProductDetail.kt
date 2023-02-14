@@ -24,7 +24,7 @@ object ProductDetail : AppCompatActivity() {
 
     lateinit var product:Product
     lateinit var order:Order
-
+    lateinit var productId:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityProductDetailBinding.inflate(layoutInflater)
@@ -32,6 +32,7 @@ object ProductDetail : AppCompatActivity() {
 
         order= Order()
         product =Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
+        productId=intent.getStringExtra("productId")!!
         var slideAdapter=SliderAdapter()
         binding.sliderView.setSliderAdapter(slideAdapter)
         binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
@@ -118,7 +119,7 @@ object ProductDetail : AppCompatActivity() {
             }
         }
         order.shape=product!!.shape
-        order.productId=product.productId
+        order.productId= productId
         order.clientId= FirebaseDao.auth.uid!!
         if (product.images.whiteLink.isNotEmpty()){
             order.image=product.images.whiteLink[0]

@@ -21,6 +21,7 @@ class Order {
     var pack="Customer"
     var totalPrice=""
     var finalPriceAftrDiscnt=""
+    var instruction=""
 
 
 }

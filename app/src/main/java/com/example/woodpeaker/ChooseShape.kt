@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.woodpeaker.databinding.ActivityChooseShapeBinding
+import com.example.woodpeaker.models.Product
 
 class ChooseShape : AppCompatActivity() {
     lateinit var binding:ActivityChooseShapeBinding
@@ -14,10 +15,25 @@ class ChooseShape : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.ikitchen.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(applicationContext, ProductDetail::class.java))
+            val intent = Intent(applicationContext, Products::class.java)
+            intent.putExtra("shape", "I shape kitchen")
+            startActivity(intent)
         })
         binding.ukitchen.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(applicationContext, ProductDetail::class.java))
+            val intent = Intent(applicationContext, Products::class.java)
+            intent.putExtra("shape", "U shape kitchen")
+            startActivity(intent)
         })
+        binding.lkitchen.setOnClickListener(View.OnClickListener {
+            val intent = Intent(applicationContext, Products::class.java)
+            intent.putExtra("shape", "L shape kitchen")
+            startActivity(intent)
+        })
+        binding.islandkitchen.setOnClickListener(View.OnClickListener {
+            val intent = Intent(applicationContext, Products::class.java)
+            intent.putExtra("shape", "Island shape kitchen")
+            startActivity(intent)
+        })
+
     }
 }

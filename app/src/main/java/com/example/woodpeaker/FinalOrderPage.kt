@@ -1,6 +1,7 @@
 package com.example.woodpeaker
 
 import android.content.Intent
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.woodpeaker.daos.FirebaseDao
 import com.example.woodpeaker.daos.OrderDao
 import com.example.woodpeaker.daos.UserDao
 import com.example.woodpeaker.databinding.ActivityFinalOrderPageBinding
@@ -32,6 +34,20 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         binding.btnNext.setOnClickListener(View.OnClickListener {
             payment(order.finalPriceAftrDiscnt.toFloat())
         })
+        binding.adAdress.setOnClickListener(View.OnClickListener {
+            var txt=binding.newAddressInput.text.toString()
+            if (txt.isNotBlank()) {
+                UserDao.user.Adresses.add(txt)
+                UserDao.updateUser()
+                Toast.makeText(this,"added",Toast.LENGTH_SHORT)
+                var radioButton=RadioButton(this)
+                radioButton.text=txt
+                radioButton.setBackgroundResource(R.drawable.shape_corner15dp_strokeshadow1dp)
+                binding.adressRadioGroup.addView(radioButton)
+            } else {
+                Toast.makeText(this, "input address", Toast.LENGTH_SHORT)
+            }
+        })
     }
     fun loadData(){
         binding.price.text=order.price
@@ -40,18 +56,25 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
             for(f in order.addons){
             addonPrice+=f.price.toInt()
         }
+        binding.addonQuantity.setText(order.addons.size)
         binding.addonPrice.text=addonPrice.toString()
         var totalPrice=addonPrice+order.price.toInt()
         binding.totalPrice.text=totalPrice.toString()
-        order.totalPrice=totalPrice.toString()
-        if(order.pack=="Merchant1"){
-            discountedPrice=totalPrice * 0.92
-        }else if(order.pack=="Merchant2"){
-            discountedPrice=totalPrice * 0.85
+        discountedPrice=totalPrice
+        if(order.pack!="Customer") {
+            if (order.pack == "Merchant1") {
+                discountedPrice = totalPrice * 0.92
+                binding.discountPercentage.text="8%"
+            } else if (order.pack == "Merchant2") {
+                discountedPrice = totalPrice * 0.85
+                binding.discountPercentage.text="15%"
+            }
+            binding.totalPrice.paintFlags=Paint.STRIKE_THRU_TEXT_FLAG
+            binding.discountedPrice.text=discountedPrice.toString()
         }else{
-            discountedPrice=totalPrice
+            binding.discountPercentage.visibility=View.GONE
+            binding.discountedPrice.visibility=View.GONE
         }
-        binding.discountedPrice.text=discountedPrice.toString()
         order.finalPriceAftrDiscnt=discountedPrice.toString()
         for(f in UserDao.user.Adresses){
             var radioButton=RadioButton(this)
@@ -99,12 +122,14 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         Toast.makeText(this,"payment failed!$p0", Toast.LENGTH_SHORT).show()
     }
     fun passOrder(id:String){
-        var order=Order()
         order.run {
+            var s=binding.adressRadioGroup.checkedRadioButtonId
+            if(s!=-1)
+                address=findViewById<RadioButton>(s).text.toString()
             paymentId=id
             status="Order Success!"
             val calendar: Calendar = Calendar.getInstance() // Returns instance with current date and time set
-            val formatter = SimpleDateFormat("dd-MM-yyyy HH:mm:ss")
+            val formatter = SimpleDateFormat("dd-MM-yyyy")
             dateTime=formatter.format(calendar.time)
         }
         OrderDao.addOrder(order)

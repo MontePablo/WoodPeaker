@@ -68,6 +68,9 @@ dependencies {
 
     implementation 'com.razorpay:checkout:1.6.21'
 
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
+
+
 
 
 

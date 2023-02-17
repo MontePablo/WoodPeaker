@@ -26,7 +26,7 @@ class Orders : AppCompatActivity(),OrderFunctions{
 
 
         binding.recyclerview.layoutManager= LinearLayoutManager(this)
-        val query: Query = OrderDao.reference.whereEqualTo("clientId",FirebaseDao.auth.uid)
+        val query: Query = OrderDao.reference.whereEqualTo("clientId",FirebaseDao.auth.uid).orderBy("dateTime",Query.Direction.ASCENDING)
         val options: FirestoreRecyclerOptions<Order> = FirestoreRecyclerOptions.Builder<Order>().setQuery(query, Order::class.java).build()
         adapter= OrderAdapter(options,this)
         binding.recyclerview.adapter=adapter
@@ -38,5 +38,14 @@ class Orders : AppCompatActivity(),OrderFunctions{
         intent.putExtra("order", gson.toJson(order))
         intent.putExtra("orderId", orderId)
         startActivity(intent)
+    }
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.stopListening()
     }
 }

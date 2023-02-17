@@ -22,13 +22,25 @@ import com.google.firebase.auth.GoogleAuthProvider
 class Login : AppCompatActivity() {
     lateinit var binding:ActivityLoginBinding
     lateinit var googleSignInClient: GoogleSignInClient
+    lateinit var pack:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        pack=intent.getStringExtra("package")!!
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.statusBarColor=getColor(R.color.lv345)
         binding.signIn.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(applicationContext, MainActivity::class.java)) })
+            val email=binding.email.text.toString()
+            val password=binding.password.text.toString()
+            signIn(email,password)
+        })
+        binding.newSignup.setOnClickListener(View.OnClickListener {
+            val email=binding.newEmail.text.toString()
+            val password=binding.newPassword.text.toString()
+            signUp(email,password)
+        })
+
+        binding.newSignup.setOnClickListener(View.OnClickListener {  })
         binding.gotoSignUp.setOnClickListener(View.OnClickListener {
             binding.signinLayout.visibility=View.GONE
             binding.signupLayout.visibility=View.VISIBLE
@@ -38,6 +50,9 @@ class Login : AppCompatActivity() {
             binding.signupLayout.visibility=View.GONE
         })
         binding.google.setOnClickListener(View.OnClickListener { googleSignIn() })
+
+
+
     }
     private fun googleSignIn() {
         var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -105,8 +120,11 @@ class Login : AppCompatActivity() {
                     user.id=firebaseUser.uid
                     user.name=firebaseUser.displayName!!
                     user.email=firebaseUser.email!!
+                    user.mobile=binding.newNumber.text.toString()
                     UserDao.addUser(user)
-                    startActivity(Intent(this, Profile::class.java))
+                    val intent = Intent(this, Profile::class.java)
+                    intent.putExtra("pack",pack)
+                    startActivity(intent)
                 }
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
@@ -123,12 +141,7 @@ class Login : AppCompatActivity() {
         binding.forgetPassword.visibility=visib
         binding.progressBar.visibility=when(visib==View.INVISIBLE){ true-> View.VISIBLE false-> View.INVISIBLE}
     }
-    fun signinOrSignup(a:String){
-        val email=binding.email.text.toString()
-        val password=binding.password.text.toString()
-        if(a=="signIn") signIn(email,password)
-        else signUp(email,password)
-    }
+
 
     private fun signIn(email:String,password:String){
         allButtonsVisibility(View.INVISIBLE)

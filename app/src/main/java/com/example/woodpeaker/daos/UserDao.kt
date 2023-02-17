@@ -14,9 +14,8 @@ object UserDao {
         user=User()
         init()
     }
-//    var collection:CollectionReference = FirebaseDao.db.collection("users")
     fun addUser(user: User): Task<Void> {
-        var v= collection.document(user.id).set(user)
+        var v= collection.document(FirebaseDao.auth.uid!!).set(user)
         Log.d("TAG", "add user:success")
         v.addOnSuccessListener { init() }
         return v
@@ -33,5 +32,9 @@ object UserDao {
             Log.d("TAG","user fetch failed:${it.localizedMessage}")
         }
     }
-
+    fun updateUser(): Task<Void> {
+        var v = collection.document(user.id).set(user)
+        Log.d("TAG", "update user:success")
+        return v
+    }
 }

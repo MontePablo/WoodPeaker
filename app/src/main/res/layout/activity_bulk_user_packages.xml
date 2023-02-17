@@ -29,30 +29,79 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.89">
-        <Button
-            android:background="@color/transparent"
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/package_1"
-            app:layout_constraintVertical_bias=".45"
+            android:backgroundTint="#78BCAF"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="15dp"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.08"
-            app:layout_constraintWidth_percent=".50"
+            android:background="@drawable/shape_corner100dp_transparentbackround"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.073"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-        <Button
-            android:background="@color/transparent"
+            app:layout_constraintVertical_bias="0.454"
+            app:layout_constraintWidth_percent=".53" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Rs.3,000/-"
+                android:textStyle="bold"
+                android:textSize="35sp"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="BASIC"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:paddingTop="40dp"/>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            app:cardElevation="15dp"
+            android:backgroundTint="#E0775B"
             android:id="@+id/package_2"
-            app:layout_constraintVertical_bias=".71"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.08"
-            app:layout_constraintWidth_percent=".50"
+            app:cardCornerRadius="30dp"
+            android:background="@drawable/shape_corner100dp_transparentbackround"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.075"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintVertical_bias="0.707"
+            app:layout_constraintWidth_percent=".53" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Rs.12,000/-"
+                android:textStyle="bold"
+                android:textSize="35sp"
+                android:paddingTop="3dp"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="PRO"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:paddingTop="40dp"/>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

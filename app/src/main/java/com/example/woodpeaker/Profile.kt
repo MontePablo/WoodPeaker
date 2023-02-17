@@ -17,11 +17,13 @@ import com.example.woodpeaker.models.User
 class Profile : AppCompatActivity() {
     lateinit var binding: ActivityProfileBinding
     lateinit var user: User
+    lateinit var pack:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loadUserIntoView(auth.uid!!)
+        pack=intent.getStringExtra("pack")!!
         binding.save.setOnClickListener(View.OnClickListener { upload() })
 
     }
@@ -39,20 +41,20 @@ class Profile : AppCompatActivity() {
         var email=binding.email.text.toString()
         var mobile=binding.mobile.text.toString()
         var name=binding.name.text.toString()
-        if(!email.isNullOrBlank()) {
+        if(!email.isNullOrBlank() && !mobile.isNullOrBlank() && !name.isNullOrBlank()) {
             user.email = email
-        }
-        if(!mobile.isNullOrBlank()) {
             user.mobile = mobile
-        }
-        if(!name.isNullOrBlank()) {
             user.name = name
+        }else{
+            Toast.makeText(this,"fill all fields first",Toast.LENGTH_SHORT)
         }
         UserDao.addUser(user).addOnSuccessListener {
-            Toast.makeText(this,"sucess",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"success",Toast.LENGTH_SHORT).show()
             Log.d("TAG","user upload success")
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("pack",pack)
+            startActivity(intent)
             finish()
-            startActivity(Intent(this,MainActivity::class.java))
         }.addOnFailureListener {
             Log.d("TAG","user upload failed: ${it.localizedMessage}")
         }

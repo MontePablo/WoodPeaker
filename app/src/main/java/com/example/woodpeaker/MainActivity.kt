@@ -13,8 +13,11 @@ class MainActivity : AppCompatActivity() {
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.statusBarColor=getColor(R.color.shadowlight)
-        binding.buyimage.setOnClickListener(View.OnClickListener {
+        binding.explore.setOnClickListener(View.OnClickListener {
             startActivity(Intent(applicationContext, ChooseShape::class.java))
+        })
+        binding.membership.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(applicationContext, BulkUserPackages::class.java))
         })
 
 

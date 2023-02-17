@@ -24,7 +24,6 @@ class CustomerType : AppCompatActivity() {
 
     fun bulkUserfunc(){
         startActivity(Intent(applicationContext, SelectYourPackage::class.java))
-        binding.chooseUserLayout.visibility=View.GONE
     }
 
 

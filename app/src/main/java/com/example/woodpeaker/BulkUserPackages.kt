@@ -14,9 +14,15 @@ class BulkUserPackages : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityBulkUserPackagesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.package1.setOnClickListener(View.OnClickListener { startActivity(Intent(applicationContext, Login::class.java))
+        binding.package1.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Login::class.java)
+            intent.putExtra("pack","3000")
+            startActivity(intent)
         })
-        binding.package2.setOnClickListener(View.OnClickListener { startActivity(Intent(applicationContext, Login::class.java))
+        binding.package2.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this, Login::class.java)
+            intent.putExtra("pack","12000")
+            startActivity(intent)
         })
     }
 }

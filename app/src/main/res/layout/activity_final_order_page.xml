@@ -19,11 +19,7 @@
            android:layout_height="wrap_content"
            android:id="@+id/price"
            android:text="2000"/>
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/discountedPrice"
-           android:text="1800"/>
+
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
@@ -34,20 +30,47 @@
            android:layout_height="wrap_content"
            android:id="@+id/addonQuantity"
            android:text="5"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/totalPrice"
+           android:text="25000"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/discountPercentage"
+           android:text="10%"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:id="@+id/discountedPrice"
+           android:text="23000"/>
        <RadioGroup
            android:layout_margin="10dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:orientation="vertical"
            android:id="@+id/adress_radioGroup"/>
+       <EditText
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:hint="enter your address"
+           android:id="@+id/newAddressInput"/>
 
-       <TextView
+       <Button
+           android:id="@+id/adAdress"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:textColor="@color/logoBrown"
-           android:id="@+id/totalPrice"
-           android:text="30000"/>
+           android:text="add adress"/>
+
+       <TextView
+           android:id="@+id/finalPrice"
+           android:layout_width="wrap_content"
+           android:layout_height="18dp"
+           android:text="30000"
+           android:textColor="@color/logoBrown" />
        <Button
+           android:text="next"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:id="@+id/btnNext"/>

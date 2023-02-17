@@ -22,6 +22,7 @@ class Order {
     var totalPrice=""
     var finalPriceAftrDiscnt=""
     var instruction=""
+    var address=""
 
 
 }

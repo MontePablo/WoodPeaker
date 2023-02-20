@@ -22,7 +22,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 class Login : AppCompatActivity() {
     lateinit var binding:ActivityLoginBinding
     lateinit var googleSignInClient: GoogleSignInClient
-    lateinit var pack:String
+    var pack=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pack=intent.getStringExtra("package")!!

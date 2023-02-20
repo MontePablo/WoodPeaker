@@ -17,7 +17,7 @@ import com.example.woodpeaker.models.User
 class Profile : AppCompatActivity() {
     lateinit var binding: ActivityProfileBinding
     lateinit var user: User
-    lateinit var pack:String
+    var pack=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivityProfileBinding.inflate(layoutInflater)
@@ -51,7 +51,11 @@ class Profile : AppCompatActivity() {
         UserDao.addUser(user).addOnSuccessListener {
             Toast.makeText(this,"success",Toast.LENGTH_SHORT).show()
             Log.d("TAG","user upload success")
-            val intent = Intent(this, MainActivity::class.java)
+            val intent:Intent
+            if(pack.isNotEmpty())
+                intent = Intent(this, MainActivity::class.java)
+            else
+                intent=Intent(this,PaymentPage::class.java)
             intent.putExtra("pack",pack)
             startActivity(intent)
             finish()

@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Woodpeaker"
         tools:targetApi="31">
         <activity
+            android:name=".ThreeDimentionalModelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Help"
+            android:exported="false" />
+        <activity
             android:name=".PaymentPage"
             android:exported="false" />
         <activity

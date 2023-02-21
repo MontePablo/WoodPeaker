@@ -11,5 +11,9 @@ class User() {
     var mobile=""
     var sizes=HashMap<String,String>()
     var pack="Customer"
+    var packBuyDate=""
+    var packExpiryDate=""
     var Adresses=ArrayList<String>()
+    var packagePaymentId=""
+
 }

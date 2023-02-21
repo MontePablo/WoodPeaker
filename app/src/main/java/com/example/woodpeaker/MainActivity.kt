@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.woodpeaker.daos.FirebaseDao
 import com.example.woodpeaker.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,20 @@ class MainActivity : AppCompatActivity() {
         binding.membership.setOnClickListener(View.OnClickListener {
             startActivity(Intent(applicationContext, BulkUserPackages::class.java))
         })
-
+        binding.account.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(applicationContext, Profile::class.java))
+        })
+        binding.orders.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(applicationContext, Orders::class.java))
+        })
+        binding.help.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(applicationContext, Help::class.java))
+        })
+        binding.signout.setOnClickListener(View.OnClickListener {
+            FirebaseDao.auth.signOut()
+            finish()
+            startActivity(Intent(this, Login::class.java))
+        })
 
 
     }

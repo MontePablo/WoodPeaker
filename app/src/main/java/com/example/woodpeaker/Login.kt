@@ -25,7 +25,7 @@ class Login : AppCompatActivity() {
     var pack=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pack=intent.getStringExtra("package")!!
+        pack=intent.getStringExtra("pack")!!
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.statusBarColor=getColor(R.color.lv345)

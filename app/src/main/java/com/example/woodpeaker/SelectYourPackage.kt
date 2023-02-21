@@ -12,7 +12,8 @@ class SelectYourPackage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivitySelectYourPackageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.btnNext.setOnClickListener(View.OnClickListener{startActivity(Intent(applicationContext, BulkUserPackages::class.java))
+        binding.btnNext.setOnClickListener(View.OnClickListener{
+            startActivity(Intent(applicationContext, BulkUserPackages::class.java))
         })
     }
 }

@@ -1,5 +1,6 @@
 package com.example.woodpeaker
 
+import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -68,6 +69,10 @@ object ProductDetail : AppCompatActivity() {
 
         })
         binding.otherDetail.text=product.description
+
+        binding.tryon.setOnClickListener(View.OnClickListener {
+            startActivity(Intent(this,ThreeDimentionalModelActivity::class.java))
+        })
 
         addFeatures()
         addReviews()

@@ -6,6 +6,8 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.DocumentSnapshot
+import java.text.SimpleDateFormat
+import java.util.*
 
 object UserDao {
      var user= User()
@@ -31,6 +33,21 @@ object UserDao {
         getUser(FirebaseDao.auth.uid!!).addOnSuccessListener {document ->
             document.toObject(User::class.java)?.let { user ->
                 this.user=user
+                if(user.packExpiryDate.isNotEmpty()){
+                    val formatter = SimpleDateFormat.getDateInstance()
+                    val todayCal=Calendar.getInstance()
+                    val expCal=Calendar.getInstance()
+                    expCal.time=formatter.parse(formatter.format(user.packExpiryDate))
+
+                    if(todayCal.after(expCal)){
+                        user.packExpiryDate=""
+                        user.packBuyDate=""
+                        user.pack="Customer"
+                        this.user=user
+                        updateUser()
+                    }
+
+                }
             }
         }.addOnFailureListener {
             Log.d("TAG","user fetch failed:${it.localizedMessage}")

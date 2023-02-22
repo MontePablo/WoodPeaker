@@ -7,8 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.example.woodpeaker.ProductDetail.startActivity
-import com.example.woodpeaker.databinding.OrderClickFragViewBinding
 import com.example.woodpeaker.databinding.WallQuestionFragViewBinding
 import com.example.woodpeaker.models.Product
 import com.google.gson.Gson

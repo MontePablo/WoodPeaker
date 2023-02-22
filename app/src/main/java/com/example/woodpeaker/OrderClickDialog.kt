@@ -7,8 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.example.woodpeaker.ProductDetail.startActivity
-import com.example.woodpeaker.daos.FirebaseDao
+import androidx.core.content.ContextCompat.startActivity
 import com.example.woodpeaker.databinding.OrderClickFragViewBinding
 import com.example.woodpeaker.models.Order
 import com.example.woodpeaker.models.Product
@@ -41,13 +40,13 @@ object OrderClickDialog  {
             val gson = Gson()
             val intent = Intent(context, AutoMeasure::class.java)
             intent.putExtra("order", gson.toJson(order))
-            startActivity(intent)
+            startActivity(context,intent,null)
         })
         viewBinding.btnManual.setOnClickListener(View.OnClickListener {
             val gson = Gson()
             val intent = Intent(context, ManualMeasure::class.java)
             intent.putExtra("order", gson.toJson(order))
-            startActivity(intent)
+            startActivity(context,intent,null)
         })
         viewBinding.btnQuestion.setOnClickListener(View.OnClickListener {
             WallQuestionDialog.process(activity,context,layoutInflater)

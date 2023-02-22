@@ -32,156 +32,161 @@
         app:layout_constraintEnd_toStartOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="20dp"
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@id/name"
+        app:layout_constraintLeft_toRightOf="@id/guideline1"
+        android:text="Full Name" />
+
+    <EditText
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintEnd_toStartOf="@id/guideline2"
-        app:layout_constraintHeight_percent=".92"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/heading">
+        app:layout_constraintHeight_percent=".05"
+        android:autoSizeTextType="uniform"
+        android:elevation="20dp"
+        android:background="@drawable/shape_corner100dp_strokeshadow2dp"
+        app:layout_constraintBottom_toTopOf="@id/mobile"
+        app:layout_constraintLeft_toRightOf="@id/guideline1"
+        app:layout_constraintRight_toLeftOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/heading"
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/name_group"
-            android:layout_width="match_parent"
+         />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="4dp"
+        android:text="Mobile number"
+        app:layout_constraintBottom_toTopOf="@id/mobile"
+        app:layout_constraintLeft_toRightOf="@id/guideline1"
+        />
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/mobile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".05"
+        android:autoSizeTextType="uniform"
+        android:elevation="20dp"
+        android:background="@drawable/shape_corner100dp_strokeshadow2dp"        app:layout_constraintLeft_toRightOf="@id/guideline1"
+        app:layout_constraintRight_toLeftOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintBottom_toTopOf="@id/email" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:paddingBottom="4dp"
+        android:text="Email"
+        app:layout_constraintBottom_toTopOf="@id/email"
+        app:layout_constraintLeft_toRightOf="@id/guideline1"/>
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent=".05"
+        android:autoSizeTextType="uniform"
+        android:elevation="20dp"
+        android:background="@drawable/shape_corner100dp_strokeshadow2dp"
+        app:layout_constraintLeft_toRightOf="@id/guideline1"
+        app:layout_constraintRight_toLeftOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/mobile"
+        app:layout_constraintBottom_toTopOf="@id/buttom_group"/>
+    <TextView
+        android:id="@+id/textview7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintBottom_toTopOf="@id/textview8"
+        android:text="package name"/>
+    <TextView
+        android:padding="10dp"
+        android:elevation="20dp"
+        android:background="@drawable/shape_corner100dp_strokeshadow2dp"
+        android:id="@+id/pack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/textview7"
+        app:layout_constraintRight_toLeftOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintBottom_toTopOf="@id/expiryDate"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+    <TextView
+        android:id="@+id/textview8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/textview7"
+        app:layout_constraintBottom_toTopOf="@id/buttom_group"
+        android:text="package name"/>
+    <TextView
+        android:padding="10dp"
+        android:elevation="20dp"
+        android:background="@drawable/shape_corner100dp_strokeshadow2dp"
+        android:id="@+id/expiryDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/textview8"
+        app:layout_constraintRight_toLeftOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@id/pack"
+        app:layout_constraintBottom_toTopOf="@id/buttom_group"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttom_group"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintLeft_toRightOf="@id/guideline1"
+        app:layout_constraintRight_toLeftOf="@id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/expiryDate">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/mobile_group"
-            app:layout_constraintHeight_percent="0.10"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:autoSizeTextType="uniform"
-                android:paddingBottom="4dp"
-                android:text="Full Name"
-                app:layout_constraintHeight_percent="0.30"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/shape_half_round_corner_darkwhite_border"
-                app:layout_constraintHeight_percent="0.70"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView2"
-                app:layout_constraintWidth_percent="1.0"
-                tools:layout_editor_absoluteY="156dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/mobile_group"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/email_group"
-            app:layout_constraintHeight_percent="0.10"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_group">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:autoSizeTextType="uniform"
-                android:paddingBottom="4dp"
-                android:text="Mobile number"
-                app:layout_constraintHeight_percent="0.30"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:inputType="number"
-                android:id="@+id/mobile"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/shape_half_round_corner_darkwhite_border"
-                app:layout_constraintHeight_percent="0.70"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView3"
-                app:layout_constraintWidth_percent="1.0"
-                tools:layout_editor_absoluteY="156dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/email_group"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttom_group"
-            app:layout_constraintHeight_percent="0.13"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mobile_group">
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:autoSizeTextType="uniform"
-                android:paddingBottom="4dp"
-                android:text="Email"
-                app:layout_constraintHeight_percent="0.30"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/email"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:autoSizeTextType="uniform"
-                android:background="@drawable/shape_half_round_corner_darkwhite_border"
-                app:layout_constraintHeight_percent="0.58"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView6"
-                app:layout_constraintWidth_percent="1.0"
-                tools:layout_editor_absoluteY="156dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttom_group"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:background="@drawable/gradient_signin"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintHeight_percent="1"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email_group">
+            app:layout_constraintRight_toLeftOf="@id/skip"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.49" />
 
-            <Button
-                android:id="@+id/save"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/gradient_signin"
-                android:text="Save"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_percent="1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/skip"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.49" />
-
-            <Button
-                android:id="@+id/skip"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/gradient_signup"
-                android:text="Skip"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_percent="1"
-                app:layout_constraintLeft_toRightOf="@id/save"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.49" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <Button
+            android:id="@+id/skip"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_signup"
+            android:text="Skip"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="1"
+            app:layout_constraintLeft_toRightOf="@id/save"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.49" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

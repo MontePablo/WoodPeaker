@@ -1,14 +1,12 @@
 package com.example.woodpeaker
 
 import android.content.Intent
-import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.woodpeaker.adapters.SliderAdapter
 import com.example.woodpeaker.daos.FirebaseDao
-import com.example.woodpeaker.daos.UserDao
 import com.example.woodpeaker.databinding.ActivityProductDetailBinding
 import com.example.woodpeaker.databinding.CustomViewAddonBinding
 import com.example.woodpeaker.databinding.CustomViewRatingBinding
@@ -17,14 +15,12 @@ import com.example.woodpeaker.models.Product
 import com.google.gson.Gson
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
-import java.util.*
-import kotlin.collections.ArrayList
 
-object ProductDetail : AppCompatActivity() {
-    lateinit var binding:ActivityProductDetailBinding
+class ProductDetail : AppCompatActivity() {
+    lateinit var binding: ActivityProductDetailBinding
 
-    lateinit var product:Product
-    lateinit var order:Order
+    lateinit var product: Product
+    lateinit var order: Order
     lateinit var productId:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +28,9 @@ object ProductDetail : AppCompatActivity() {
         setContentView(binding.root)
 
         order= Order()
-        product =Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
+        product = Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
         productId=intent.getStringExtra("productId")!!
-        var slideAdapter=SliderAdapter()
+        var slideAdapter= SliderAdapter()
         binding.sliderView.setSliderAdapter(slideAdapter)
         binding.sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM)
         binding.sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
@@ -82,7 +78,7 @@ object ProductDetail : AppCompatActivity() {
 
     fun addReviews(){
         for(rating in product!!.ratings){
-            val viewBinding=CustomViewRatingBinding.inflate(layoutInflater)
+            val viewBinding= CustomViewRatingBinding.inflate(layoutInflater)
             viewBinding.name.text=rating.name
             viewBinding.comment.text=rating.comment
             viewBinding.date.text=rating.date
@@ -100,7 +96,7 @@ object ProductDetail : AppCompatActivity() {
     fun addAddons(){
 
         for(f in product.addons){
-            val viewBinding=CustomViewAddonBinding.inflate(layoutInflater)
+            val viewBinding= CustomViewAddonBinding.inflate(layoutInflater)
             Glide.with(this).load(f.imageLink).into(viewBinding.addonImage)
             viewBinding.addonPrice.text=f.price
             viewBinding.adddonName.text=f.name

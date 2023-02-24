@@ -79,7 +79,7 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         for(f in UserDao.user.Adresses){
             var radioButton=RadioButton(this)
             radioButton.text=f
-            radioButton.setBackgroundResource(R.drawable.shape_corner15dp_strokeshadow1dp)
+            radioButton.setBackgroundResource(R.drawable.shape_corner10dp_stroke_black)
             binding.adressRadioGroup.addView(radioButton)
         }
     }

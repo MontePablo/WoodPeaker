@@ -42,23 +42,35 @@ class ManualMeasure : AppCompatActivity() {
 
         when(order.shape){
             "I shape kitchen" ->{
-                binding.l2layout.visibility=View.VISIBLE
+                binding.l2.visibility=View.VISIBLE
+                binding.l2foot.visibility=View.VISIBLE
             }
             "Island shape kitchen" ->{
-                binding.l1layout.visibility=View.VISIBLE
-                binding.l2layout.visibility=View.VISIBLE
-                binding.l3layout.visibility=View.VISIBLE
-                binding.l4layout.visibility=View.VISIBLE
+                binding.l1.visibility=View.VISIBLE
+                binding.l2.visibility=View.VISIBLE
+                binding.l3.visibility=View.VISIBLE
+                binding.l4.visibility=View.VISIBLE
+                binding.l1foot.visibility=View.VISIBLE
+                binding.l2foot.visibility=View.VISIBLE
+                binding.l3foot.visibility=View.VISIBLE
+                binding.l4foot.visibility=View.VISIBLE
 
             }
             "U shape kitchen" ->{
-                binding.l1layout.visibility=View.VISIBLE
-                binding.l2layout.visibility=View.VISIBLE
-                binding.l3layout.visibility=View.VISIBLE
+                binding.l1.visibility=View.VISIBLE
+                binding.l2.visibility=View.VISIBLE
+                binding.l3.visibility=View.VISIBLE
+                binding.l1foot.visibility=View.VISIBLE
+                binding.l2foot.visibility=View.VISIBLE
+                binding.l3foot.visibility=View.VISIBLE
+
             }
             "L shape kitchen" ->{
-                binding.l1layout.visibility=View.VISIBLE
-                binding.l2layout.visibility=View.VISIBLE
+                binding.l1.visibility=View.VISIBLE
+                binding.l2.visibility=View.VISIBLE
+                binding.l1foot.visibility=View.VISIBLE
+                binding.l2foot.visibility=View.VISIBLE
+
             }
         }
 

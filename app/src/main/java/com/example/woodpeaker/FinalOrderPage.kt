@@ -63,9 +63,11 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         discountedPrice=totalPrice
         if(order.pack!="Customer") {
             if (order.pack == "Merchant1") {
+                order.discountPercent="8%"
                 discountedPrice = totalPrice * 0.92
                 binding.discountPercentage.text="8%"
             } else if (order.pack == "Merchant2") {
+                order.discountPercent="15%"
                 discountedPrice = totalPrice * 0.85
                 binding.discountPercentage.text="15%"
             }
@@ -76,6 +78,7 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
             binding.discountedPrice.visibility=View.GONE
         }
         order.finalPriceAftrDiscnt=discountedPrice.toString()
+        order.totalPrice=totalPrice.toString()
         for(f in UserDao.user.Adresses){
             var radioButton=RadioButton(this)
             radioButton.text=f

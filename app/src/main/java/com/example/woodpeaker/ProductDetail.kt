@@ -61,9 +61,6 @@ class ProductDetail : AppCompatActivity() {
             orderCreate()
             OrderClickDialog.process(this,this, order,layoutInflater)
         })
-        binding.tryon.setOnClickListener(View.OnClickListener {
-
-        })
         binding.otherDetail.text=product.description
 
         binding.tryon.setOnClickListener(View.OnClickListener {

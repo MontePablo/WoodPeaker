@@ -15,7 +15,7 @@ import com.google.firebase.firestore.Query
 import com.google.gson.Gson
 
 class Products : AppCompatActivity(),productFuntions {
-    lateinit var binding:ActivityProductsBinding
+    lateinit var binding: ActivityProductsBinding
     lateinit var adapter: ProductsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         binding= ActivityProductsBinding.inflate(layoutInflater)

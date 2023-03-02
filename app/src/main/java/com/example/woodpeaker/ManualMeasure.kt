@@ -38,13 +38,28 @@ class ManualMeasure : AppCompatActivity() {
     var imageViewTable: Hashtable<Int, CustomviewImageBinding> = Hashtable<Int,CustomviewImageBinding>()
     lateinit var binding:ActivityManualMeasureBinding
     lateinit var order:Order
+    lateinit var lengthDatas:ArrayList<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         binding=ActivityManualMeasureBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         order = Gson().fromJson(intent.getStringExtra("order"), Order::class.java)
+        lengthDatas= intent.getStringArrayListExtra("lengthDatas") as ArrayList<String>
         Log.d("TAG",order.image+"@@"+order.shape+order.price)
+
+        if(lengthDatas.isNotEmpty()){
+            if(lengthDatas.size==1){
+                binding.l2.setText(lengthDatas.get(1))
+            }else if(lengthDatas.size==2){
+                binding.l1.setText(lengthDatas.get(0))
+                binding.l2.setText(lengthDatas.get(1))
+            }else{
+                binding.l1.setText(lengthDatas.get(0))
+                binding.l2.setText(lengthDatas.get(1))
+                binding.l3.setText(lengthDatas.get(2))
+            }
+        }
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permissions ->
             isReadPermissionGranted = permissions[android.Manifest.permission.READ_EXTERNAL_STORAGE] ?: isReadPermissionGranted
         }
@@ -58,11 +73,9 @@ class ManualMeasure : AppCompatActivity() {
                 binding.l1.visibility=View.VISIBLE
                 binding.l2.visibility=View.VISIBLE
                 binding.l3.visibility=View.VISIBLE
-                binding.l4.visibility=View.VISIBLE
                 binding.l1foot.visibility=View.VISIBLE
                 binding.l2foot.visibility=View.VISIBLE
                 binding.l3foot.visibility=View.VISIBLE
-                binding.l4foot.visibility=View.VISIBLE
 
             }
             "U shape kitchen" ->{
@@ -109,7 +122,6 @@ class ManualMeasure : AppCompatActivity() {
         val l1=binding.l1.text.toString().toFloat()
         val l2=binding.l2.text.toString().toFloat()
         val l3=binding.l3.text.toString().toFloat()
-        val l4=binding.l4.text.toString().toFloat()
         when (order.shape){
             "I shape kitchen" ->{
                 val c=order.price.toFloat() * l2
@@ -117,19 +129,17 @@ class ManualMeasure : AppCompatActivity() {
                 order.lengths.add(l2.toString())
             }
             "Island shape kitchen" ->{
-                val d=l1+l2+l3+l4
+                val d=l1+l2+l3
                 Log.d("TAG","price:"+order.price)
                 Log.d("TAG","l1:"+l1)
                 Log.d("TAG","l2:"+l2)
                 Log.d("TAG","l3:"+l3)
-                Log.d("TAG","l4:"+l4)
 
                 val c=order.price.toFloat() * d
                 binding.price.text=c.toString()
                 order.lengths.add(l1.toString())
                 order.lengths.add(l2.toString())
                 order.lengths.add(l3.toString())
-                order.lengths.add(l4.toString())
             }
             "U shape kitchen" ->{
                 val d=l1+l2+l3

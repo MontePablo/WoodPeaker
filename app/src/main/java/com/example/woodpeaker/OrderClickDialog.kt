@@ -16,7 +16,7 @@ import java.util.*
 
 object OrderClickDialog  {
     lateinit var activity: Activity
-    lateinit var product: Product
+    lateinit var order: Order
     lateinit var context:Context
     lateinit var layoutInflater: LayoutInflater
 
@@ -27,7 +27,7 @@ object OrderClickDialog  {
         layoutInflater: LayoutInflater) {
 
         this.activity=activity
-        this.product= product!!
+        this.order= order!!
         this.context=context
         this.layoutInflater=layoutInflater
         var dialogBuilder= AlertDialog.Builder(context)

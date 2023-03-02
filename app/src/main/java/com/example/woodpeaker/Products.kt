@@ -3,6 +3,7 @@ package com.example.woodpeaker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.woodpeaker.adapters.ProductsAdapter
@@ -22,10 +23,10 @@ class Products : AppCompatActivity(),productFuntions {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val shape =intent.getStringExtra("shape")!!
-
+        val shape =intent.getStringExtra("shape").toString()
+        Log.d("TAG",shape)
         binding.recyclerview.layoutManager=LinearLayoutManager(this)
-        val query: Query = ProductDao.productCollection.whereEqualTo("shape",shape).orderBy("price",Query.Direction.ASCENDING)
+        val query: Query = ProductDao.productCollection.whereEqualTo("shape",shape)
         val options: FirestoreRecyclerOptions<Product> = FirestoreRecyclerOptions.Builder<Product>().setQuery(query,Product::class.java).build()
         adapter= ProductsAdapter(options,this)
         binding.recyclerview.adapter=adapter

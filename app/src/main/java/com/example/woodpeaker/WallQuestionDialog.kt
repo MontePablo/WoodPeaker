@@ -13,7 +13,6 @@ import com.google.gson.Gson
 
 object WallQuestionDialog  {
     lateinit var activity: Activity
-    lateinit var product: Product
     lateinit var context:Context
     lateinit var layoutInflater: LayoutInflater
 
@@ -21,13 +20,8 @@ object WallQuestionDialog  {
         activity: Activity,
         context: Context,
         layoutInflater: LayoutInflater) {
-        Log.d("TAG","main func start")
-        Log.d("TAG","product: ${product!!.title}")
-        Log.d("TAG","context:$context")
-        Log.d("TAG","activity: $activity")
 
         this.activity=activity
-        this.product= product!!
         this.context=context
         this.layoutInflater=layoutInflater
         var dialogBuilder= AlertDialog.Builder(context)

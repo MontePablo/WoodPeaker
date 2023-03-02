@@ -133,5 +133,6 @@ class ProductDetail : AppCompatActivity() {
             order.image=product.images.whiteLink.get(0)
         }
         order.title=product.title
+        order.price=product.price
     }
 }

@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.example.woodpeaker.daos.StorageDao
@@ -30,6 +32,9 @@ import java.util.*
 import kotlin.concurrent.timerTask
 
 class ManualMeasure : AppCompatActivity() {
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
+    private var isReadPermissionGranted = false
+
     var imageViewTable: Hashtable<Int, CustomviewImageBinding> = Hashtable<Int,CustomviewImageBinding>()
     lateinit var binding:ActivityManualMeasureBinding
     lateinit var order:Order
@@ -39,6 +44,10 @@ class ManualMeasure : AppCompatActivity() {
         setContentView(binding.root)
 
         order = Gson().fromJson(intent.getStringExtra("order"), Order::class.java)
+        Log.d("TAG",order.image+"@@"+order.shape+order.price)
+        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permissions ->
+            isReadPermissionGranted = permissions[android.Manifest.permission.READ_EXTERNAL_STORAGE] ?: isReadPermissionGranted
+        }
 
         when(order.shape){
             "I shape kitchen" ->{
@@ -97,19 +106,25 @@ class ManualMeasure : AppCompatActivity() {
     }
 
     fun calculate(){
-        val l1=binding.l1.text.toString().toInt()
-        val l2=binding.l2.text.toString().toInt()
-        val l3=binding.l3.text.toString().toInt()
-        val l4=binding.l4.text.toString().toInt()
+        val l1=binding.l1.text.toString().toFloat()
+        val l2=binding.l2.text.toString().toFloat()
+        val l3=binding.l3.text.toString().toFloat()
+        val l4=binding.l4.text.toString().toFloat()
         when (order.shape){
             "I shape kitchen" ->{
-                val c=order.price.toInt() * l2
+                val c=order.price.toFloat() * l2
                 binding.price.text=c.toString()
                 order.lengths.add(l2.toString())
             }
             "Island shape kitchen" ->{
                 val d=l1+l2+l3+l4
-                val c=order.price.toInt() * d
+                Log.d("TAG","price:"+order.price)
+                Log.d("TAG","l1:"+l1)
+                Log.d("TAG","l2:"+l2)
+                Log.d("TAG","l3:"+l3)
+                Log.d("TAG","l4:"+l4)
+
+                val c=order.price.toFloat() * d
                 binding.price.text=c.toString()
                 order.lengths.add(l1.toString())
                 order.lengths.add(l2.toString())
@@ -118,7 +133,7 @@ class ManualMeasure : AppCompatActivity() {
             }
             "U shape kitchen" ->{
                 val d=l1+l2+l3
-                val c=order.price.toInt() * d
+                val c=order.price.toFloat() * d
                 binding.price.text=c.toString()
                 order.lengths.add(l1.toString())
                 order.lengths.add(l2.toString())
@@ -127,7 +142,7 @@ class ManualMeasure : AppCompatActivity() {
             }
             "L shape kitchen" ->{
                 val d=l1+l2
-                val c=order.price.toInt() * d
+                val c=order.price.toFloat() * d
                 binding.price.text=c.toString()
                 order.lengths.add(l1.toString())
                 order.lengths.add(l2.toString())

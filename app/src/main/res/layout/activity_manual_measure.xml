@@ -109,14 +109,13 @@
         app:layout_constraintLeft_toRightOf="@id/l4"
         app:layout_constraintTop_toBottomOf="@id/l3" />
     <Button
-        android:visibility="gone"
         android:layout_margin="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/l4"
         android:elevation="20dp"
         android:padding="20dp"
-        android:backgroundTint="#E75337"
+        android:backgroundTint="#2378B7"
         android:textColor="@color/white"
         android:background="@drawable/shape_corner100dp_strokeshadow2dp"
         android:layout_width="wrap_content"

@@ -22,10 +22,10 @@ import com.google.firebase.auth.GoogleAuthProvider
 class Login : AppCompatActivity() {
     lateinit var binding:ActivityLoginBinding
     lateinit var googleSignInClient: GoogleSignInClient
-    var pack=""
+    lateinit var pack: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        pack=intent.getStringExtra("pack")!!
+        pack= intent.getStringExtra("pack").toString()
         binding=ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.statusBarColor=getColor(R.color.lv345)

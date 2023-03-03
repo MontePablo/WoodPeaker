@@ -2,6 +2,7 @@ package com.example.woodpeaker
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -38,14 +39,19 @@ class ManualMeasure : AppCompatActivity() {
     var imageViewTable: Hashtable<Int, CustomviewImageBinding> = Hashtable<Int,CustomviewImageBinding>()
     lateinit var binding:ActivityManualMeasureBinding
     lateinit var order:Order
-    lateinit var lengthDatas:ArrayList<String>
+    var lengthDatas:ArrayList<String> = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         binding=ActivityManualMeasureBinding.inflate(layoutInflater)
+        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permissions ->
+            isReadPermissionGranted = permissions[android.Manifest.permission.READ_EXTERNAL_STORAGE] ?: isReadPermissionGranted
+        }
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        window.statusBarColor=getColor(R.color.lv345)
         order = Gson().fromJson(intent.getStringExtra("order"), Order::class.java)
-        lengthDatas= intent.getStringArrayListExtra("lengthDatas") as ArrayList<String>
+        if(intent.getStringArrayListExtra("lengthDatas") !=null)
+            lengthDatas.addAll(intent.getStringArrayListExtra("lengthDatas")!!)
+//        val arr=intent.getStringArrayListExtra("lengthDatas")!!
         Log.d("TAG",order.image+"@@"+order.shape+order.price)
 
         if(lengthDatas.isNotEmpty()){
@@ -60,9 +66,7 @@ class ManualMeasure : AppCompatActivity() {
                 binding.l3.setText(lengthDatas.get(2))
             }
         }
-        permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){ permissions ->
-            isReadPermissionGranted = permissions[android.Manifest.permission.READ_EXTERNAL_STORAGE] ?: isReadPermissionGranted
-        }
+
 
         when(order.shape){
             "I shape kitchen" ->{
@@ -101,7 +105,10 @@ class ManualMeasure : AppCompatActivity() {
         })
         binding.btnContinue.setOnClickListener(View.OnClickListener {
             getImages()
-
+            val gson = Gson()
+            val intent = Intent(applicationContext, FinalOrderPage::class.java)
+            intent.putExtra("order", gson.toJson(order))
+            startActivity(intent)
         })
         binding.btnQuestion.setOnClickListener(View.OnClickListener {
             ManualMeasureQuestionDialog.process(this, this,layoutInflater)
@@ -119,9 +126,16 @@ class ManualMeasure : AppCompatActivity() {
     }
 
     fun calculate(){
-        val l1=binding.l1.text.toString().toFloat()
-        val l2=binding.l2.text.toString().toFloat()
-        val l3=binding.l3.text.toString().toFloat()
+        var l2=0F
+        if(binding.l2.text.isNotEmpty())
+            l2=binding.l2.text.toString().toFloat()
+        var l1=0F
+        if(binding.l1.text.isNotEmpty())
+            l1=binding.l1.text.toString().toFloat()
+        var l3=0F
+        if(binding.l3.text.isNotEmpty())
+            l3=binding.l3.text.toString().toFloat()
+        binding.price.visibility=View.VISIBLE
         when (order.shape){
             "I shape kitchen" ->{
                 val c=order.price.toFloat() * l2
@@ -237,7 +251,6 @@ class ManualMeasure : AppCompatActivity() {
             }
             return
         }
-
     }
     suspend fun uploadImage(viewBinding:CustomviewImageBinding,imageUri: Uri){
         progressBarFunc(viewBinding)

@@ -7,17 +7,16 @@
     tools:context=".ProductDetail">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/buynow"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintBottom_toTopOf="@id/buynow"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/sliderView"
@@ -42,13 +41,14 @@
                 app:sliderStartAutoCycle="true" />
 
             <TextView
+                android:lineSpacingExtra="5dp"
                 android:id="@+id/productName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="golden blaze wooden finish kitchen"
                 android:textAlignment="center"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -65,9 +65,10 @@
                 app:layout_constraintTop_toBottomOf="@id/productName" />
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/colRed"
-                android:layout_width="14dp"
-                android:layout_height="18dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="15dp"
                 android:background="@color/dotRedDeep"
                 android:elevation="5dp"
@@ -75,9 +76,10 @@
                 app:layout_constraintTop_toBottomOf="@id/productName" />
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/colGreen"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="15dp"
                 android:background="#5AC833"
                 android:elevation="5dp"
@@ -85,9 +87,10 @@
                 app:layout_constraintTop_toBottomOf="@id/productName" />
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/colBlue"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="15dp"
                 android:background="#004EEA"
                 android:elevation="5dp"
@@ -95,9 +98,10 @@
                 app:layout_constraintTop_toBottomOf="@id/productName" />
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/colWhite"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="15dp"
                 android:background="#FFFFFF"
                 android:elevation="5dp"
@@ -105,9 +109,10 @@
                 app:layout_constraintTop_toBottomOf="@id/productName" />
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/colBlack"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="15dp"
                 android:background="#000000"
                 android:elevation="5dp"
@@ -115,9 +120,10 @@
                 app:layout_constraintTop_toBottomOf="@id/productName" />
 
             <Button
+                android:visibility="gone"
                 android:id="@+id/colYellow"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_margin="15dp"
                 android:background="#FFEB3B"
                 android:elevation="5dp"
@@ -125,22 +131,25 @@
                 app:layout_constraintTop_toBottomOf="@id/productName" />
 
             <Button
+                android:padding="15dp"
                 android:id="@+id/tryon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_margin="30dp"
                 android:background="@drawable/shape_corner15dp_strokeshadow1dp"
                 android:elevation="20dp"
                 android:text="3D TRY ON"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/colBlack" />
+                app:layout_constraintTop_toBottomOf="@id/textview" />
 
             <TextView
+                android:lineSpacingExtra="7dp"
+                android:textSize="17sp"
                 android:id="@+id/features"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="20dp"
                 android:text="Features"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -148,6 +157,8 @@
                 app:layout_constraintTop_toBottomOf="@id/tryon" />
 
             <TextView
+                android:lineSpacingExtra="10dp"
+                android:textSize="15sp"
                 android:id="@+id/otherDetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -155,44 +166,48 @@
                 android:text="this kitchen is actualy made of italian marbel and kosthi Stone."
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/features" />
-
+        <TextView
+            android:layout_margin="20dp"
+            android:id="@+id/textview3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reviews"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/otherDetail"/>
+        <LinearLayout
+            android:id="@+id/reviews_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview3" />
             <TextView
                 android:id="@+id/textview1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
+                android:layout_margin="30dp"
                 android:text="Addons you can add"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/reviews_layout" />
 
+        <HorizontalScrollView
+            android:layout_marginTop="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textview1"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp">
             <LinearLayout
                 android:id="@+id/addon_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/textview1" />
-
-            <TextView
-                android:id="@+id/textview3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reviews"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/addon_layout" />
+                android:layout_height="300dp"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
 
-            <LinearLayout
-                android:id="@+id/reviews_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@id/textview3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

@@ -13,6 +13,7 @@ class ChooseShape : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityChooseShapeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        window.statusBarColor=getColor(R.color.lv345)
 
         binding.ikitchen.setOnClickListener(View.OnClickListener {
             val intent = Intent(applicationContext, Products::class.java)

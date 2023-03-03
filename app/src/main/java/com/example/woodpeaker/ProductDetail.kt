@@ -22,11 +22,12 @@ class ProductDetail : AppCompatActivity() {
     lateinit var product: Product
     lateinit var order: Order
     lateinit var productId:String
+    var currentCol=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityProductDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        window.statusBarColor=getColor(R.color.lv345)
         order= Order()
         product = Gson().fromJson(intent.getStringExtra("product"), Product::class.java)
         productId=intent.getStringExtra("productId")!!
@@ -49,12 +50,31 @@ class ProductDetail : AppCompatActivity() {
         else if(product.images.yellowLink.isNotEmpty())
             slideAdapter.updateData(product.images.yellowLink)
 
-        binding.colBlack.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.blackLink) })
-        binding.colBlue.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.blueLink) })
-        binding.colGreen.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.greenLink) })
-        binding.colWhite.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.whiteLink) })
-        binding.colRed.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.redLink) })
-        binding.colYellow.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.yellowLink) })
+        if(product.images.redLink.isNotEmpty())
+            binding.colRed.visibility=View.VISIBLE
+        if(product.images.blueLink.isNotEmpty())
+            binding.colBlue.visibility=View.VISIBLE
+        if(product.images.greenLink.isNotEmpty())
+            binding.colGreen.visibility=View.VISIBLE
+        if(product.images.blackLink.isNotEmpty())
+            binding.colBlack.visibility=View.VISIBLE
+        if(product.images.yellowLink.isNotEmpty())
+            binding.colYellow.visibility=View.VISIBLE
+        if(product.images.whiteLink.isNotEmpty())
+            binding.colWhite.visibility=View.VISIBLE
+
+        binding.colBlack.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.blackLink)
+        currentCol="black"})
+        binding.colBlue.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.blueLink)
+        currentCol="blue"})
+        binding.colGreen.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.greenLink)
+        currentCol="green"})
+        binding.colWhite.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.whiteLink)
+        currentCol="white"})
+        binding.colRed.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.redLink)
+        currentCol="red"})
+        binding.colYellow.setOnClickListener(View.OnClickListener { slideAdapter.updateData(product.images.yellowLink)
+        currentCol="yellow"})
 
         binding.productName.text=product.title
         binding.buynow.setOnClickListener(View.OnClickListener {
@@ -94,7 +114,7 @@ class ProductDetail : AppCompatActivity() {
 
         for(f in product.addons){
             val viewBinding= CustomViewAddonBinding.inflate(layoutInflater)
-            Glide.with(this).load(f.imageLink).into(viewBinding.addonImage)
+            Glide.with(viewBinding.addonImage).load(f.imageLink).into(viewBinding.addonImage)
             viewBinding.addonPrice.text=f.price
             viewBinding.adddonName.text=f.name
             viewBinding.addonAdd.setOnClickListener(View.OnClickListener {

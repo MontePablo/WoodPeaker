@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatCallback
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.woodpeaker.daos.FirebaseDao
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,5 +19,6 @@ class SplashScreen : AppCompatActivity() {
             startActivity(Intent(applicationContext, Intro::class.java))
             finish()
         }, 3100)
+        FirebaseDao
     }
 }

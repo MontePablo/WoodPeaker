@@ -15,7 +15,7 @@ class ThreeDimentionalModelActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityThreeDimentionalModelBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        window.statusBarColor=getColor(R.color.black)
         val link="https://firebasestorage.googleapis.com/v0/b/woodpeaker-39311.appspot.com/o/models%2Fscene.glb?alt=media&token=54bc56cd-2bfa-4f7a-912e-070b669b66ad"
         val localLink="models/scene.glb"
         arFragment=(supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment)

@@ -24,6 +24,7 @@ class Order {
     var finalPriceAftrDiscnt=""
     var instruction=""
     var address=""
+    var wallDesign=""
 
 
 }

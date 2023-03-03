@@ -13,6 +13,7 @@ class Help : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityHelpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        window.statusBarColor=getColor(R.color.lv345)
 
         if(binding.email.text.isNotBlank() && binding.msg.text.isNotBlank() && binding.subject.text.isNotBlank()){
             val intent= Intent(Intent.ACTION_SENDTO)

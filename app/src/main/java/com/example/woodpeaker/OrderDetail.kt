@@ -23,7 +23,7 @@ class OrderDetail : AppCompatActivity() {
         setContentView(binding.root)
         order=Gson().fromJson(intent.getStringExtra("order"), Order::class.java)
         orderId =intent.getStringExtra("orderId")!!
-        window.statusBarColor=getColor(R.color.blue)
+        window.statusBarColor=getColor(R.color.dotRedLight)
 
         val viewBinding=CustomviewProductInOrderdetailBinding.inflate(layoutInflater)
         binding.productLayout.addView(viewBinding.root)

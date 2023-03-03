@@ -60,6 +60,9 @@
             android:name=".Login"
             android:exported="false" />
         <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
             android:name=".CustomerType"
             android:exported="false" />
         <activity

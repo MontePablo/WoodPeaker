@@ -31,7 +31,8 @@ class Profile : AppCompatActivity(), PaymentResultListener {
         binding= ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loadUserIntoView(auth.uid!!)
-        pack=intent.getStringExtra("pack")!!
+        pack=intent.getStringExtra("pack").toString()
+        window.statusBarColor=getColor(R.color.lv345)
         binding.save.setOnClickListener(View.OnClickListener { upload() })
 
     }

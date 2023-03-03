@@ -28,6 +28,7 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         super.onCreate(savedInstanceState)
         binding=ActivityFinalOrderPageBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        window.statusBarColor=getColor(R.color.lv345)
 
         order = Gson().fromJson(intent.getStringExtra("order"), Order::class.java)
         loadData()
@@ -56,7 +57,8 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
             for(f in order.addons){
             addonPrice+=f.price.toInt()
         }
-        binding.addonQuantity.setText(order.addons.size)
+        if(order.addons.isNotEmpty())
+            binding.addonQuantity.setText(order.addons.size)
         binding.addonPrice.text=addonPrice.toString()
         var totalPrice=addonPrice+order.price.toInt()
         binding.totalPrice.text=totalPrice.toString()
@@ -132,7 +134,7 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
             paymentId=id
             status="Order Success!"
             val calendar: Calendar = Calendar.getInstance() // Returns instance with current date and time set
-            val formatter = SimpleDateFormat("dd-MM-yyyy")
+            val formatter = SimpleDateFormat.getDateInstance()
             dateTime=formatter.format(calendar.time)
         }
         OrderDao.addOrder(order)

@@ -16,6 +16,7 @@ class CustomerType : AppCompatActivity() {
         binding.singleUser.setOnClickListener(View.OnClickListener { singleUserfunc() })
         binding.bulkUser.setOnClickListener(View.OnClickListener { bulkUserfunc() })
 
+        window.statusBarColor=getColor(R.color.lv345)
 
         }
     fun singleUserfunc() {

@@ -22,7 +22,7 @@ class Products : AppCompatActivity(),productFuntions {
         binding= ActivityProductsBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        window.statusBarColor=getColor(R.color.lv345)
         val shape =intent.getStringExtra("shape").toString()
         Log.d("TAG",shape)
         binding.recyclerview.layoutManager=LinearLayoutManager(this)

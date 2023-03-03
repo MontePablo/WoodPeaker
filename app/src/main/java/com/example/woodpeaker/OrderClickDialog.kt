@@ -6,6 +6,7 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
 import com.example.woodpeaker.databinding.OrderClickFragViewBinding
@@ -37,10 +38,19 @@ object OrderClickDialog  {
         dialog.show()
 
         viewBinding.btnAuto.setOnClickListener(View.OnClickListener {
-            val gson = Gson()
-            val intent = Intent(context, AutoMeasure::class.java)
-            intent.putExtra("order", gson.toJson(order))
-            startActivity(context,intent,null)
+            if(viewBinding.radioGroupNowall.checkedRadioButtonId!=-1) {
+                when (viewBinding.radioGroupNowall.checkedRadioButtonId) {
+                    viewBinding.allSideWallAvail.id -> order.wallDesign = "All side wall present"
+                    viewBinding.leftNowall.id -> order.wallDesign = "Left wall not present"
+                    viewBinding.rightNowall.id -> order.wallDesign = "Right wall not present"
+                }
+                val gson = Gson()
+                val intent = Intent(context, measureWithAR::class.java)
+                intent.putExtra("order", gson.toJson(order))
+                startActivity(context, intent, null)
+            }else{
+                Toast.makeText(context,"select all wall design first!",Toast.LENGTH_SHORT)
+            }
         })
         viewBinding.btnManual.setOnClickListener(View.OnClickListener {
             val gson = Gson()

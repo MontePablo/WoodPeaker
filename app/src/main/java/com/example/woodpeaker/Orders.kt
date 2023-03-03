@@ -3,6 +3,7 @@ package com.example.woodpeaker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.woodpeaker.adapters.OrderAdapter
 import com.example.woodpeaker.adapters.OrderFunctions
@@ -21,15 +22,18 @@ class Orders : AppCompatActivity(),OrderFunctions{
     lateinit var binding: ActivityOrdersBinding
     lateinit var adapter: OrderAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("TAG","order start")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_orders)
-
-
+        binding=ActivityOrdersBinding.inflate(layoutInflater)
+        window.statusBarColor=getColor(R.color.lv345)
         binding.recyclerview.layoutManager= LinearLayoutManager(this)
         val query: Query = OrderDao.reference.whereEqualTo("clientId",FirebaseDao.auth.uid).orderBy("dateTime",Query.Direction.ASCENDING)
         val options: FirestoreRecyclerOptions<Order> = FirestoreRecyclerOptions.Builder<Order>().setQuery(query, Order::class.java).build()
         adapter= OrderAdapter(options,this)
         binding.recyclerview.adapter=adapter
+        Log.d("TAG","order end")
+        Log.d("TAG"," cliend id:"+ FirebaseDao.auth.uid)
     }
 
     override fun orderClick(order: Order, orderId: String) {

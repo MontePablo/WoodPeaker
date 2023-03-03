@@ -26,6 +26,7 @@ class BulkUserPackages : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityBulkUserPackagesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        window.statusBarColor=getColor(R.color.lv345)
         binding.package1.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, Login::class.java)
             intent.putExtra("pack","3000")

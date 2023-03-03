@@ -45,6 +45,8 @@ class measureWithAR : AppCompatActivity(), Scene.OnUpdateListener {
     lateinit var order:Order
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.statusBarColor=getColor(R.color.black)
+
         super.onCreate(savedInstanceState)
         binding=ActivityMeasureWithArBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -326,7 +328,7 @@ class measureWithAR : AppCompatActivity(), Scene.OnUpdateListener {
     private fun setDistanceToRenderable(distance: String,distanceRenderable: ViewRenderable){
         val textView = (distanceRenderable.view as LinearLayout)
             .findViewById<TextView>(R.id.distanceCard)
-        textView.text = distance
+        textView.text = distance+" ft"
         Log.d("TAG", "distance: ${distance}")
     }
     private fun changeUnit(distanceMeter: Float, unit: String): Float{
@@ -340,7 +342,7 @@ class measureWithAR : AppCompatActivity(), Scene.OnUpdateListener {
     private fun makeDistanceTextWithFt(distanceMeter: Float): String{
         val distanceFt = changeUnit(distanceMeter, "ft")
         val distanceFtFloor = "%.2f".format(distanceFt)
-        return "${distanceFtFloor} ft"
+        return "${distanceFtFloor}"
     }
     fun processToNext(){
         if(lengthDatas.size!=getCount()-1){

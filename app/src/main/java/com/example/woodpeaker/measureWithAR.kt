@@ -56,17 +56,17 @@ class measureWithAR : AppCompatActivity(), Scene.OnUpdateListener {
 
         initSphere()
         initDistanceCard()
-        arFragment.apply {
-            setOnSessionConfigurationListener { session, config ->
-                if (session.isDepthModeSupported(Config.DepthMode.AUTOMATIC)) {
-                    config.depthMode = Config.DepthMode.AUTOMATIC
-                }
-            }
-            setOnViewCreatedListener { arSceneView ->
-                arSceneView.cameraStream.depthOcclusionMode =
-                    CameraStream.DepthOcclusionMode.DEPTH_OCCLUSION_ENABLED
-            }
-        }
+//        arFragment.apply {
+//            setOnSessionConfigurationListener { session, config ->
+//                if (session.isDepthModeSupported(Config.DepthMode.AUTOMATIC)) {
+//                    config.depthMode = Config.DepthMode.AUTOMATIC
+//                }
+//            }
+//            setOnViewCreatedListener { arSceneView ->
+//                arSceneView.cameraStream.depthOcclusionMode =
+//                    CameraStream.DepthOcclusionMode.DEPTH_OCCLUSION_ENABLED
+//            }
+//        }
 
 
         arFragment.setOnTapArPlaneListener { hitResult, plane, motionEvent ->
@@ -111,32 +111,6 @@ class measureWithAR : AppCompatActivity(), Scene.OnUpdateListener {
     }
     private fun drawLine(node1: AnchorNode, node2: AnchorNode) {
         //Draw a line between two AnchorNodes (adapted from https://stackoverflow.com/a/52816504/334402)
-        Log.d("TAG", "drawLine")
-        val point1: Vector3
-        val point2: Vector3
-        point1 = node1.worldPosition
-        point2 = node2.worldPosition
-
-        val difference = Vector3.subtract(point1, point2)
-        val directionFromTopToBottom = difference.normalized()
-        val rotationFromAToB: Quaternion =
-            Quaternion.lookRotation(directionFromTopToBottom, Vector3.up())
-        MaterialFactory.makeOpaqueWithColor(applicationContext, Color(0F, 255F, 244F))
-            .thenAccept { material: Material? ->
-                val model = ShapeFactory.makeCube(
-                    Vector3(.01f, .01f, difference.length()),
-                    Vector3.zero(), material
-                )
-                val lineAnchor = node2.anchor
-                val nodeForLine = Node()
-                nodeForLine.setParent(node2)
-                nodeForLine.setRenderable(model)
-                nodeForLine.setWorldPosition(Vector3.add(point1, point2).scaled(.5f))
-                nodeForLine.setWorldRotation(rotationFromAToB)
-                nodesForLine.add(nodeForLine)
-            }
-    }
-    fun updateDrawline(node1: AnchorNode, node2: AnchorNode){
         Log.d("TAG", "drawLine")
         val point1: Vector3
         val point2: Vector3

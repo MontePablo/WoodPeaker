@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.woodpeaker.daos.FirebaseDao.auth
 import com.example.woodpeaker.daos.UserDao
 import com.example.woodpeaker.databinding.ActivityProfileBinding
+import com.example.woodpeaker.databinding.NewPasswordBinding
 import com.example.woodpeaker.models.User
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
@@ -34,7 +36,37 @@ class Profile : AppCompatActivity(), PaymentResultListener {
         pack=intent.getStringExtra("pack").toString()
         window.statusBarColor=getColor(R.color.lv345)
         binding.save.setOnClickListener(View.OnClickListener { upload() })
+        binding.changePassword.setOnClickListener(View.OnClickListener { changePasswordDialog() })
 
+        if(pack=="Package1"){
+            payment(3000F)
+            pack3000=true
+        }else if(pack=="Package2"){
+            payment(12000F)
+            pack12000=true
+        }
+    }
+    private fun changePasswordDialog() {
+        var dialogBuilder= AlertDialog.Builder(this)
+        var dialogBinding= NewPasswordBinding.inflate(layoutInflater)
+        dialogBuilder.setView(dialogBinding.root)
+        val dialog=dialogBuilder.create()
+        dialog.show()
+
+        dialogBinding.savePassword.setOnClickListener(View.OnClickListener {
+            var newPswrd=dialogBinding.newPassword.text.toString()
+            auth.currentUser!!.updatePassword(newPswrd)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("TAG", "User password updated.")
+                        Toast.makeText(this,"User password updated",Toast.LENGTH_SHORT)
+                        dialog.dismiss()
+                    }
+                }.addOnFailureListener { Log.d("TAG","updatePswrd Failed: ${it.localizedMessage}") }
+        })
+        dialogBinding.cancelPassword.setOnClickListener(View.OnClickListener {
+            dialog.dismiss()
+        })
     }
      fun loadUserIntoView(uid: String) {
         UserDao.getUser(uid).addOnSuccessListener { document->
@@ -43,6 +75,9 @@ class Profile : AppCompatActivity(), PaymentResultListener {
                 binding.name.setText(user.name)
                 binding.mobile.setText(user.mobile)
                 binding.email.setText(user.email)
+                binding.pack.setText(user.pack)
+                binding.expiryDate.setText(user.packExpiryDate)
+                binding.buyDate.setText(user.packBuyDate)
             }
         }
     }
@@ -61,22 +96,9 @@ class Profile : AppCompatActivity(), PaymentResultListener {
             Toast.makeText(this,"success",Toast.LENGTH_SHORT).show()
             Log.d("TAG","user upload success")
             val intent:Intent
-            if(pack.isEmpty()){
                 intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }
-            else{
-                if(pack=="Package1"){
-                    payment(3000F)
-                    pack3000=true
-                }else if(pack=="Package2"){
-                    payment(12000F)
-                    pack12000=true
-                }
-            }
-
-
         }.addOnFailureListener {
             Log.d("TAG","user upload failed: ${it.localizedMessage}")
         }

@@ -27,6 +27,18 @@ class Products : AppCompatActivity(),productFuntions {
         Log.d("TAG",shape)
         binding.recyclerview.layoutManager=LinearLayoutManager(this)
         val query: Query = ProductDao.productCollection.whereEqualTo("shape",shape)
+        ProductDao.productCollection.whereEqualTo("shape",shape)
+
+//            .get().addOnSuccessListener {
+//            Log.d("TAG","size"+it.documents.size.toString())
+//            for(f in it.documents){
+//                val g=f.toObject(Product::class.java)
+//                Log.d("TAG","name=="+g!!.title)
+//                Log.d("TAG","price=="+g!!.price)
+//
+//            }
+//        }
+
         val options: FirestoreRecyclerOptions<Product> = FirestoreRecyclerOptions.Builder<Product>().setQuery(query,Product::class.java).build()
         adapter= ProductsAdapter(options,this)
         binding.recyclerview.adapter=adapter

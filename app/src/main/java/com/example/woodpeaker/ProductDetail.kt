@@ -154,5 +154,6 @@ class ProductDetail : AppCompatActivity() {
         }
         order.title=product.title
         order.price=product.price
+        order.color=currentCol
     }
 }

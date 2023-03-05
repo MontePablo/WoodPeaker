@@ -22,7 +22,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 class Login : AppCompatActivity() {
     lateinit var binding:ActivityLoginBinding
     lateinit var googleSignInClient: GoogleSignInClient
-    lateinit var pack: String
+    var pack=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         pack= intent.getStringExtra("pack").toString()
@@ -75,7 +75,7 @@ class Login : AppCompatActivity() {
                 val account = task.getResult(ApiException::class.java)
                 firebaseAuthWithGoogle(account.idToken)
             } catch (e: ApiException) {
-                Log.d("TAG", "onActivityResult EXEPTION : " + e.localizedMessage)
+                Log.d("TAG", "onActivityResult EXEPTION : " + e.message)
                 // Google Sign In failed, update UI appropriately
             }
         }
@@ -103,11 +103,18 @@ class Login : AppCompatActivity() {
         super.onStart()
 //        auth.currentUser.let { updateUI(it)}
         if(auth.currentUser!=null){
-            startActivity(Intent(this, MainActivity::class.java))
+            if(pack.isNotEmpty()){
+                val intent = Intent(this, Profile::class.java)
+                intent.putExtra("pack",pack)
+                startActivity(intent)
+            }else {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
             finish()
-        }else{
-            updateUI(auth.currentUser)
         }
+//        else{
+//            updateUI(auth.currentUser)
+//        }
     }
 
     fun updateUI(firebaseUser: FirebaseUser?) {
@@ -122,11 +129,14 @@ class Login : AppCompatActivity() {
                     user.email=firebaseUser.email!!
                     user.mobile=binding.newNumber.text.toString()
                     UserDao.addUser(user)
+                }
+                if(pack.isNotEmpty()){
                     val intent = Intent(this, Profile::class.java)
                     intent.putExtra("pack",pack)
                     startActivity(intent)
+                }else {
+                    startActivity(Intent(this, MainActivity::class.java))
                 }
-                startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }.addOnFailureListener { exception-> Log.d("TAG","updateUI:onFailure:"+exception.localizedMessage) }
         }

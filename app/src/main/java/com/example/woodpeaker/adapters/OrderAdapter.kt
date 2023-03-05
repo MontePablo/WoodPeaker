@@ -16,8 +16,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.firebase.ui.firestore.ObservableSnapshotArray
 
 
-class OrderAdapter(options: FirestoreRecyclerOptions<Order>, listener:OrderFunctions) :FirestoreRecyclerAdapter<Order,OrderAdapter.ViewHolder>(options) {
-    var listener:OrderFunctions
+class OrderAdapter(options: FirestoreRecyclerOptions<Order>, listener:orderFunctions) :
+    FirestoreRecyclerAdapter<Order,OrderAdapter.ViewHolder>(options) {
+    var listener:orderFunctions
     init {
         this.listener=listener
     }
@@ -34,7 +35,7 @@ class OrderAdapter(options: FirestoreRecyclerOptions<Order>, listener:OrderFunct
         val orderId = snapshots.getSnapshot(holder.bindingAdapterPosition).id
         holder.title.text=model.title
         holder.review.setOnClickListener(View.OnClickListener {  })
-        holder.status.text=model.status
+        holder.status.text=model.status.lines().last()
         holder.dateTime.text=model.dateTime
         Glide.with(holder.image.context).load(model.image).into(holder.image)
         holder.root.setOnClickListener(View.OnClickListener {listener.orderClick(model,orderId)})
@@ -52,6 +53,6 @@ class OrderAdapter(options: FirestoreRecyclerOptions<Order>, listener:OrderFunct
         var root=view.findViewById<ConstraintLayout>(R.id.item_order_root_view)
     }
 }
-interface OrderFunctions{
+interface orderFunctions{
     fun orderClick(order: Order, orderId: String)
 }

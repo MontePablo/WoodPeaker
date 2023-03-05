@@ -1,18 +1,23 @@
 package com.example.woodpeaker
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.example.woodpeaker.daos.StorageDao
@@ -48,6 +53,7 @@ class ManualMeasure : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         window.statusBarColor=getColor(R.color.lv345)
+        permission()
         order = Gson().fromJson(intent.getStringExtra("order"), Order::class.java)
         if(intent.getStringArrayListExtra("lengthDatas") !=null)
             lengthDatas.addAll(intent.getStringArrayListExtra("lengthDatas")!!)
@@ -239,6 +245,13 @@ class ManualMeasure : AppCompatActivity() {
             Log.d("TAG","onActivityResult: Failed")
             return
         }
+        else if (requestCode == 2000) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (Environment.isExternalStorageManager()) {
+                } else {
+                }
+            }
+        }
         else{
             var imageUri=data!!.data
             Log.d("TAG","onActivityResult Image received")
@@ -274,6 +287,70 @@ class ManualMeasure : AppCompatActivity() {
             viewBinding.retry.visibility=View.VISIBLE
             viewBinding.imageview.setImageResource(R.drawable.logo_retry_arrow)
             binding.retryToast.visibility=View.VISIBLE
+        }
+    }
+    fun permission() {
+        if (!checkPermission()){
+            showPermissionDialog()
+        }
+    }
+    private fun showPermissionDialog() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+                intent.addCategory("android.intent.category.DEFAULT")
+                intent.data = Uri.parse(
+                    String.format(
+                        "package:%s", *arrayOf<Any>(
+                            applicationContext.packageName
+                        )
+                    )
+                )
+                startActivityForResult(intent, 2000)
+            } catch (e: Exception) {
+                val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+                startActivityForResult(intent, 2000)
+            }
+        } else ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ),
+            333
+        )
+    }
+    private fun checkPermission(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Environment.isExternalStorageManager()
+        } else {
+            val write = ContextCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+            val read = ContextCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            )
+            write == PackageManager.PERMISSION_GRANTED &&
+                    read == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 333) {
+            if (grantResults.size > 0) {
+                val write = grantResults[0] == PackageManager.PERMISSION_GRANTED
+                val read = grantResults[1] == PackageManager.PERMISSION_GRANTED
+                if (read && write) {
+                } else {
+                }
+            }
         }
     }
 }

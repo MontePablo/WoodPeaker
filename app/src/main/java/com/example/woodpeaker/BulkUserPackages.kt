@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.woodpeaker.daos.FirebaseDao
 import com.example.woodpeaker.daos.OrderDao
 import com.example.woodpeaker.daos.UserDao
 import com.example.woodpeaker.databinding.ActivityBulkUserPackagesBinding
@@ -29,13 +30,13 @@ class BulkUserPackages : AppCompatActivity() {
         window.statusBarColor=getColor(R.color.lv345)
         binding.package1.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, Login::class.java)
-            intent.putExtra("pack","3000")
+            intent.putExtra("pack","Package1")
             startActivity(intent)
 
         })
         binding.package2.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, Login::class.java)
-            intent.putExtra("pack","3000")
+            intent.putExtra("pack","Package2")
             startActivity(intent)
         })
     }

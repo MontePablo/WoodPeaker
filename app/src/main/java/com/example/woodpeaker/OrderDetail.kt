@@ -29,6 +29,7 @@ class OrderDetail : AppCompatActivity() {
         binding.productLayout.addView(viewBinding.root)
         viewBinding.price.text=order.price
         viewBinding.quantity.text="1"
+        viewBinding.colour.text=order.color
         Glide.with(viewBinding.image.context).load(order.image).into(viewBinding.image)
         viewBinding.image.setOnClickListener(View.OnClickListener {
             ProductDao.getProduct(order.productId).addOnSuccessListener { document->

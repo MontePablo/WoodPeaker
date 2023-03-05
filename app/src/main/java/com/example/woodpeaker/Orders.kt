@@ -6,29 +6,39 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.woodpeaker.adapters.OrderAdapter
-import com.example.woodpeaker.adapters.OrderFunctions
-import com.example.woodpeaker.adapters.ProductsAdapter
+import com.example.woodpeaker.adapters.orderFunctions
 import com.example.woodpeaker.daos.FirebaseDao
 import com.example.woodpeaker.daos.OrderDao
-import com.example.woodpeaker.daos.ProductDao
 import com.example.woodpeaker.databinding.ActivityOrdersBinding
-import com.example.woodpeaker.databinding.ActivityProductsBinding
 import com.example.woodpeaker.models.Order
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.Query
 import com.google.gson.Gson
 
-class Orders : AppCompatActivity(),OrderFunctions{
+class Orders : AppCompatActivity(), orderFunctions {
     lateinit var binding: ActivityOrdersBinding
     lateinit var adapter: OrderAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("TAG","order start")
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_orders)
         binding=ActivityOrdersBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         window.statusBarColor=getColor(R.color.lv345)
         binding.recyclerview.layoutManager= LinearLayoutManager(this)
-        val query: Query = OrderDao.reference.whereEqualTo("clientId",FirebaseDao.auth.uid).orderBy("dateTime",Query.Direction.ASCENDING)
+
+//    OrderDao.orderCollection.whereEqualTo("clientId",FirebaseDao.auth.uid).orderBy("dateTime",Query.Direction.ASCENDING).get().addOnSuccessListener {
+//            Log.d("TAG","size"+it.documents.size.toString())
+//            for(f in it.documents){
+//                Log.d("TAG","id=="+f.id)
+//                val g=f.toObject(Order::class.java)
+//                Log.d("TAG","name=="+g!!.title)
+//                Log.d("TAG","price=="+g!!.price)
+//
+//            }
+//        }
+
+
+        val query: Query = OrderDao.orderCollection.whereEqualTo("clientId",FirebaseDao.auth.uid).orderBy("dateTime",Query.Direction.DESCENDING)
         val options: FirestoreRecyclerOptions<Order> = FirestoreRecyclerOptions.Builder<Order>().setQuery(query, Order::class.java).build()
         adapter= OrderAdapter(options,this)
         binding.recyclerview.adapter=adapter

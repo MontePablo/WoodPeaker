@@ -157,16 +157,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="add images of the kitchen" />
-    <ImageButton
-        android:layout_margin="10dp"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/baseline_question_mark_24"
-        android:background="@drawable/shape_corner100dp_strokeshadow2dp"
-        android:elevation="15dp"
-        android:id="@+id/btnQuestion"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/illustration"/>
 
 
     <Button

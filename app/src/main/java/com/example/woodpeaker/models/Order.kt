@@ -23,6 +23,7 @@ class Order {
     var pack="Customer"
     var totalPrice=""
     var finalPriceAftrDiscnt=""
+    var finalPriceAfterTax=""
     var instruction=""
     var address=""
     var wallDesign=""

@@ -24,7 +24,7 @@ class Orders : AppCompatActivity(), orderFunctions {
         binding=ActivityOrdersBinding.inflate(layoutInflater)
         setContentView(binding.root)
         window.statusBarColor=getColor(R.color.lv345)
-        binding.recyclerview.layoutManager= LinearLayoutManager(this)
+//        binding.recyclerview.layoutManager= LinearLayoutManager(this)
 
 //    OrderDao.orderCollection.whereEqualTo("clientId",FirebaseDao.auth.uid).orderBy("dateTime",Query.Direction.ASCENDING).get().addOnSuccessListener {
 //            Log.d("TAG","size"+it.documents.size.toString())
@@ -36,7 +36,13 @@ class Orders : AppCompatActivity(), orderFunctions {
 //
 //            }
 //        }
-
+        binding.recyclerview.setLayoutManager(
+            WrapContentLinearLayoutManager(
+                this,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+        )
 
         val query: Query = OrderDao.orderCollection.whereEqualTo("clientId",FirebaseDao.auth.uid).orderBy("dateTime",Query.Direction.DESCENDING)
         val options: FirestoreRecyclerOptions<Order> = FirestoreRecyclerOptions.Builder<Order>().setQuery(query, Order::class.java).build()

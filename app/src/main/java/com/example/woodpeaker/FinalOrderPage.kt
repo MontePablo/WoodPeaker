@@ -33,7 +33,7 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         order = Gson().fromJson(intent.getStringExtra("order"), Order::class.java)
         loadData()
         binding.btnNext.setOnClickListener(View.OnClickListener {
-            payment(order.finalPriceAftrDiscnt.toFloat())
+            payment(order.finalPriceAfterTax.toFloat())
         })
         binding.adAdress.setOnClickListener(View.OnClickListener {
             var txt=binding.newAddressInput.text.toString()
@@ -51,14 +51,19 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         })
     }
     fun loadData(){
+        for(f in UserDao.user.Adresses){
+            var radioButton=RadioButton(this)
+            radioButton.text=f
+            radioButton.setBackgroundResource(R.drawable.shape_corner15dp_strokeshadow1dp)
+            binding.adressRadioGroup.addView(radioButton)
+        }
         binding.price.text=order.price
         var addonPrice=0.0
         var discountedPrice=0.0
             for(f in order.addons){
             addonPrice+=f.price.toInt()
         }
-        if(order.addons.isNotEmpty())
-            binding.addonQuantity.setText(order.addons.size)
+        binding.addonQuantity.setText(order.addons.size)
         binding.addonPrice.text=addonPrice.toString()
         var totalPrice=addonPrice+order.price.toInt()
         binding.totalPrice.text=totalPrice.toString()
@@ -81,6 +86,9 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         }
         order.finalPriceAftrDiscnt=discountedPrice.toString()
         order.totalPrice=totalPrice.toString()
+        val finalPriceAfterTax=(discountedPrice * 1.18)
+        order.finalPriceAfterTax=finalPriceAfterTax.toString()
+        binding.priceAfterTax.text=finalPriceAfterTax.toString()
         for(f in UserDao.user.Adresses){
             var radioButton=RadioButton(this)
             radioButton.text=f

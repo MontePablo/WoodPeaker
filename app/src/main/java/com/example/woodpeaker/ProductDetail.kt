@@ -156,4 +156,8 @@ class ProductDetail : AppCompatActivity() {
         order.price=product.price
         order.color=currentCol
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

@@ -25,7 +25,14 @@ class Products : AppCompatActivity(),productFuntions {
         window.statusBarColor=getColor(R.color.lv345)
         val shape =intent.getStringExtra("shape").toString()
         Log.d("TAG",shape)
-        binding.recyclerview.layoutManager=LinearLayoutManager(this)
+//        binding.recyclerview.layoutManager=LinearLayoutManager(this)
+        binding.recyclerview.setLayoutManager(
+            WrapContentLinearLayoutManager(
+                this,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+        )
         val query: Query = ProductDao.productCollection.whereEqualTo("shape",shape)
         ProductDao.productCollection.whereEqualTo("shape",shape)
 

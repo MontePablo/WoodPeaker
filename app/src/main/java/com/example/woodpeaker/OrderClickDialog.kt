@@ -3,7 +3,6 @@ package com.example.woodpeaker
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
@@ -11,9 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
 import com.example.woodpeaker.databinding.OrderClickFragViewBinding
 import com.example.woodpeaker.models.Order
-import com.example.woodpeaker.models.Product
 import com.google.gson.Gson
-import java.util.*
 
 object OrderClickDialog  {
     lateinit var activity: Activity
@@ -43,6 +40,8 @@ object OrderClickDialog  {
                     viewBinding.allSideWallAvail.id -> order.wallDesign = "All side wall present"
                     viewBinding.leftNowall.id -> order.wallDesign = "Left wall not present"
                     viewBinding.rightNowall.id -> order.wallDesign = "Right wall not present"
+                    viewBinding.allSideNowall.id -> order.wallDesign = "wall not present at both Left & Right side"
+
                 }
                 val gson = Gson()
                 val intent = Intent(context, measureWithAR::class.java)
@@ -59,7 +58,7 @@ object OrderClickDialog  {
             startActivity(context,intent,null)
         })
         viewBinding.btnQuestion.setOnClickListener(View.OnClickListener {
-            WallQuestionDialog.process(activity,context,layoutInflater)
+            OrderQuestionDialog.process(activity,context,layoutInflater)
         })
     }
 

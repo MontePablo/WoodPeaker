@@ -58,4 +58,8 @@ class OrderDetail : AppCompatActivity() {
         binding.updates.text=order.instruction
         binding.address.text=order.address
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

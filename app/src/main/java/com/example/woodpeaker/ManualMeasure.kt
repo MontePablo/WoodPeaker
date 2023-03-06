@@ -13,8 +13,6 @@ import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -25,15 +23,12 @@ import com.example.woodpeaker.databinding.ActivityManualMeasureBinding
 import com.example.woodpeaker.databinding.CustomviewImageBinding
 import com.example.woodpeaker.models.Order
 import com.google.gson.Gson
-import com.razorpay.Checkout
 import id.zelory.compressor.Compressor
 import id.zelory.compressor.constraint.default
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.timerTask
 
@@ -115,9 +110,6 @@ class ManualMeasure : AppCompatActivity() {
             val intent = Intent(applicationContext, FinalOrderPage::class.java)
             intent.putExtra("order", gson.toJson(order))
             startActivity(intent)
-        })
-        binding.btnQuestion.setOnClickListener(View.OnClickListener {
-            ManualMeasureQuestionDialog.process(this, this,layoutInflater)
         })
         binding.addImage.setOnClickListener(View.OnClickListener { addImage() })
 

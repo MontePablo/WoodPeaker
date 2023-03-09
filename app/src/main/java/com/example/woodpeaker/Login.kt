@@ -130,7 +130,8 @@ class Login : AppCompatActivity() {
                     user.mobile=binding.newNumber.text.toString()
                     UserDao.addUser(user)
                 }
-                if(pack.isNotEmpty()){
+                if(pack=="Package1" || pack=="Package2"){
+                    Toast.makeText(this,pack, Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, Profile::class.java)
                     intent.putExtra("pack",pack)
                     startActivity(intent)

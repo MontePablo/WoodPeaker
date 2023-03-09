@@ -17,6 +17,7 @@ import com.itextpdf.kernel.geom.PageSize
 import com.itextpdf.kernel.pdf.PdfDocument
 import com.itextpdf.kernel.pdf.PdfWriter
 import com.itextpdf.layout.Document
+import com.itextpdf.layout.Style
 import com.itextpdf.layout.borders.Border
 import com.itextpdf.layout.element.Cell
 import com.itextpdf.layout.element.Image
@@ -30,7 +31,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
-class MainActivity2 : AppCompatActivity() {
+class InvoiceGenerator : AppCompatActivity() {
     var order=Order()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,8 @@ class MainActivity2 : AppCompatActivity() {
             lengths.addAll(arrayListOf("2.5","4.1f","3f"))
             price="32000"
             totalPrice="40000"
+            discountPercent="%8"
+            address="Madarat, Baruipur\nSidheswari Kalitala\nnear Kalyani Construction Shop\npin-700144"
             finalPriceAftrDiscnt="35000"
             finalPriceAfterTax="42000"
             addons.add(Addon().apply {name="chimney";price="2000";quantity="2"})
@@ -50,14 +53,12 @@ class MainActivity2 : AppCompatActivity() {
         val pdfpath=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString()
         var file=File(pdfpath,"invoice.pdf")
         var outputStream=FileOutputStream(file)
-//        val path="D:\\DwnlData\\invoice.pdf"
         var pdfWriter= PdfWriter(outputStream)
         var pdfDocument= PdfDocument(pdfWriter)
         pdfDocument.defaultPageSize= PageSize.A4
         var document= Document(pdfDocument)
 
-        document.setTextAlignment(TextAlignment.CENTER)
-        var headingTable=Table(floatArrayOf(300f,300f))
+
 
 //        val drawable=getDrawable(R.drawable.applogo_colouredbackround)
         //        val bitmap=drawable!!.toBitmap()
@@ -72,18 +73,41 @@ class MainActivity2 : AppCompatActivity() {
 //        val image= Image(imageData)
 //        image.scaleToFit(50f,50f)
 
+        document.setTextAlignment(TextAlignment.CENTER)
+        val headingTable=Table(floatArrayOf(300f,300f))
         headingTable.setBackgroundColor(DeviceRgb(13,131,221)).setFontColor(DeviceRgb(255,255,255))
         document.add(Paragraph("Invoice").setFontSize(20F))
 //        headingTable.addCell(image)
-        headingTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("WoodPeaker")).setFontSize(20F).setBorder(Border.NO_BORDER)
+        headingTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("WoodPeaker")).setFontSize(20F)
             .setPadding(30f))
         headingTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("WoodPeaker\nGSTIN: 69569369536936\n" +
                 "ph:+91 9878543332\nwoodpeakercustomersupport@gmail.com")).setPadding(20f))
-
-//        document.add(Paragraph("my name is shyamol"))
-//        document.add(table)
         document.add(headingTable)
-        Log.d("TAG","pdf created")
+
+        val itemHeading=Table(floatArrayOf(200f,200f,100f,100f)).setFontColor(DeviceRgb(13,131,221))
+        itemHeading.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("Description"))
+            .setPadding(30f))
+        itemHeading.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("Qnit Cost"))
+            .setPadding(30f))
+        itemHeading.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("Quantity"))
+            .setPadding(30f))
+        itemHeading.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("Amount"))
+            .setPadding(30f))
+
+        val itemTable=Table(floatArrayOf(200f,200f,100f,100f)).setBold()
+        var count=0
+
+        itemTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph(order.title))
+            .setPadding(15f))
+        itemTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph(order.price))
+            .setPadding(30f))
+        itemTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("1"))
+            .setPadding(30f))
+        itemTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("Description"))
+            .setPadding(30f))
+
+
+
         document.close()
     }
 }

@@ -147,8 +147,8 @@ class Login : AppCompatActivity() {
         binding.signIn.visibility=visib
         binding.gotoSignUp.visibility=visib
         binding.google.visibility=visib
-        binding.facebook.visibility=visib
-        binding.twitter.visibility=visib
+//        binding.facebook.visibility=visib
+//        binding.twitter.visibility=visib
         binding.forgetPassword.visibility=visib
         binding.progressBar.visibility=when(visib==View.INVISIBLE){ true-> View.VISIBLE false-> View.INVISIBLE}
     }

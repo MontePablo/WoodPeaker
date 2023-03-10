@@ -38,7 +38,7 @@
 
 
             <EditText
-                android:paddingLeft="8dp"
+                android:paddingLeft="12dp"
                 android:autoSizeTextType="uniform"
                 android:id="@+id/email"
                 android:layout_width="0dp"
@@ -54,7 +54,7 @@
                 />
 
             <EditText
-                android:paddingLeft="8dp"
+                android:paddingLeft="12dp"
                 android:inputType="textPassword"
                 android:autoSizeTextType="uniform"
                 android:id="@+id/password"
@@ -105,7 +105,7 @@
             android:text="Sign In"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            app:layout_constraintHeight_percent="0.10"
+            app:layout_constraintHeight_percent="0.09"
             app:layout_constraintWidth_percent="0.85"
             app:layout_constraintBottom_toTopOf="@id/social_login_group"/>
 
@@ -121,43 +121,44 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sign_in">
 
-            <ImageButton
+            <Button
+                android:drawableLeft="@drawable/logo_google"
                 android:id="@+id/google"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/shape_corner10dp_stroke_black"
-                android:src="@drawable/logo_google"
-                app:layout_constraintDimensionRatio="1:1"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Login with Google"
+                android:background="@drawable/shape_corner100dp_strokeshadow2dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/facebook"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.25"></ImageButton>
-
-            <ImageButton
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@id/google"
-                app:layout_constraintRight_toLeftOf="@id/twitter"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/facebook"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_percent="0.25"
-                android:layout_height="0dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/shape_corner10dp_stroke_black"
-                android:src="@drawable/logo_facebook"></ImageButton>
-
-            <ImageButton
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@id/facebook"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/twitter"
-                android:layout_width="0dp"
-                app:layout_constraintWidth_percent="0.25"
-                android:layout_height="0dp"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/shape_corner10dp_stroke_black"
-                android:src="@drawable/logo_twitter"></ImageButton>
+                app:layout_constraintTop_toTopOf="parent"></Button>
+
+<!--            <ImageButton-->
+<!--                app:layout_constraintDimensionRatio="1:1"-->
+<!--                app:layout_constraintLeft_toRightOf="@id/google"-->
+<!--                app:layout_constraintRight_toLeftOf="@id/twitter"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:id="@+id/facebook"-->
+<!--                android:layout_width="0dp"-->
+<!--                app:layout_constraintWidth_percent="0.25"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:background="@drawable/shape_corner10dp_stroke_black"-->
+<!--                android:src="@drawable/logo_facebook"></ImageButton>-->
+
+<!--            <ImageButton-->
+<!--                app:layout_constraintDimensionRatio="1:1"-->
+<!--                app:layout_constraintLeft_toRightOf="@id/facebook"-->
+<!--                app:layout_constraintRight_toRightOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                android:id="@+id/twitter"-->
+<!--                android:layout_width="0dp"-->
+<!--                app:layout_constraintWidth_percent="0.25"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:background="@drawable/shape_corner10dp_stroke_black"-->
+<!--                android:src="@drawable/logo_twitter"></ImageButton>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -173,7 +174,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.10"
+            app:layout_constraintHeight_percent="0.09"
             app:layout_constraintWidth_percent="0.85"
             app:layout_constraintTop_toBottomOf="@+id/social_login_group" />
 

@@ -201,7 +201,7 @@
                 app:layout_constraintTop_toBottomOf="@id/adress_radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="enter your address"
+                android:hint="enter address followed by name"
                 android:id="@+id/newAddressInput"/>
 
             <Button

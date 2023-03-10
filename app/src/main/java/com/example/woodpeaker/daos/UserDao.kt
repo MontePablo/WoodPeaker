@@ -54,7 +54,7 @@ object UserDao {
         }
     }
     fun updateUser(): Task<Void> {
-        var v = collection.document(user.id).set(user)
+        var v = collection.document(FirebaseDao.auth.uid!!).set(user)
         Log.d("TAG", "update user:success")
         return v
     }

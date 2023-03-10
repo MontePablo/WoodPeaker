@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, Login::class.java))
         })
         binding.dddd.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(applicationContext, InvoiceGenerator::class.java))
+            startActivity(Intent(applicationContext, MainActivity2::class.java))
         })
 
     }

@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Woodpeaker"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".InvoiceGenerator"
             android:exported="false" />
         <activity

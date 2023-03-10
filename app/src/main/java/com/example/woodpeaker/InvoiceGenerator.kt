@@ -1,12 +1,13 @@
-
+package com.example.woodpeaker
+import android.net.Uri
 import android.os.Environment
+import androidx.core.net.toUri
 import com.example.woodpeaker.daos.UserDao
 import com.example.woodpeaker.models.Addon
 import com.example.woodpeaker.models.Order
 import com.itextpdf.kernel.colors.DeviceRgb
 import com.itextpdf.kernel.geom.PageSize
 import com.itextpdf.kernel.pdf.PdfDocument
-import com.itextpdf.kernel.pdf.PdfName.Table
 import com.itextpdf.kernel.pdf.PdfWriter
 import com.itextpdf.layout.Document
 import com.itextpdf.layout.borders.Border
@@ -21,32 +22,33 @@ import java.io.FileOutputStream
 class InvoiceGenerator(order:Order) {
     lateinit var orderId:String
     lateinit var invoiceId:String
-    lateinit var invoicePath:String
+    lateinit var invoiceUri: Uri
     init {
         val officeAddress =
             "Main Office:\n30/A Central Avenue,kol-700001\nGSTIN: 69569369536936\n" +
                     "ph:+91 9878543332\nwoodpeakercustomersupport@gmail.com"
         orderId = "OD" + System.currentTimeMillis().toString()
         invoiceId = "INV" + System.currentTimeMillis().toString()
-//        order.apply {
-//            title = "L type white body kitchen"
-//            lengths.addAll(arrayListOf("2.5", "4.1f", "3f"))
-//            price = "32000"
-//            totalPrice = "40000"
-//            dateTime = "21 Jan 2023"
-//            discountPercent = "8%"
-//            address =
-//                "Madarat, Baruipur\nSidheswari Kalitala\nnear Kalyani Construction Shop\npin-700144"
-//            finalPriceAftrDiscnt = "35000"
-//            finalPriceAfterTax = "42000"
-//            addons.add(Addon().apply { name = "chimney";price = "2000";quantity = "2" })
-//            addons.add(Addon().apply { name = "glass";price = "1000";quantity = "3" })
-//            addons.add(Addon().apply { name = "rack";price = "4000";quantity = "1" })
-//        }
+        order.apply {
+            title = "L type white body kitchen"
+            lengths.addAll(arrayListOf("2.5", "4.1f", "3f"))
+            price = "32000"
+            totalPrice = "40000"
+            dateTime = "21 Jan 2023"
+            discountPercent = "8%"
+            address =
+                "Madarat, Baruipur\nSidheswari Kalitala\nnear Kalyani Construction Shop\npin-700144"
+            finalPriceAftrDiscnt = "35000"
+            finalPriceAfterTax = "42000"
+            addons.add(Addon().apply { name = "chimney";price = "2000";quantity = "2" })
+            addons.add(Addon().apply { name = "glass";price = "1000";quantity = "3" })
+            addons.add(Addon().apply { name = "rack";price = "4000";quantity = "1" })
+        }
 
         val pdfpath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
             .toString()
         var file = File(pdfpath, "invoice.pdf")
+        invoiceUri=file.toUri()
         var outputStream = FileOutputStream(file)
         var pdfWriter = PdfWriter(outputStream)
         var pdfDocument = PdfDocument(pdfWriter)
@@ -231,7 +233,4 @@ class InvoiceGenerator(order:Order) {
         )
         document.close()
     }
-    fun orderId()=orderId
-    fun invoiceId()=invoiceId
-    fun invoicePath()=invoicePath
 }

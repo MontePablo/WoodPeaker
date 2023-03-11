@@ -79,7 +79,9 @@ dependencies {
     implementation 'com.itextpdf.android:kernel-android:7.2.5'
     implementation 'com.itextpdf.android:layout-android:7.2.5'
 
-    implementation 'com.github.afreakyelf:Pdf-Viewer:v1.1.1'
+//    implementation 'com.github.afreakyelf:Pdf-Viewer:v1.1.1'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
 
 
 

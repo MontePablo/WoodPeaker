@@ -57,6 +57,12 @@ class OrderDetail : AppCompatActivity() {
         binding.orderid.text=orderId
         binding.updates.text=order.instruction
         binding.address.text=order.address
+        binding.invoiceBtn.setOnClickListener(View.OnClickListener {
+            val gson = Gson()
+            val intent = Intent(applicationContext, PdfActivity::class.java)
+            intent.putExtra("pdfLink", order.invoiceLink)
+            startActivity(intent)
+        })
     }
     override fun onBackPressed() {
         super.onBackPressed()

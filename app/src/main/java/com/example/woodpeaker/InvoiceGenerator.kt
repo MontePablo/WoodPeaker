@@ -28,7 +28,7 @@ class InvoiceGenerator(order:Order) {
             "Main Office:\n30/A Central Avenue,kol-700001\nGSTIN: 69569369536936\n" +
                     "ph:+91 9878543332\nwoodpeakercustomersupport@gmail.com"
         orderId = "OD" + System.currentTimeMillis().toString()
-        invoiceId = "INV" + System.currentTimeMillis().toString()
+        invoiceId = "INV" + System.currentTimeMillis().toString()+".pdf"
         order.apply {
             title = "L type white body kitchen"
             lengths.addAll(arrayListOf("2.5", "4.1f", "3f"))
@@ -117,7 +117,7 @@ class InvoiceGenerator(order:Order) {
         userInfoTable.addCell(
             Cell().setFontSize(15F).setFontColor(DeviceRgb(12, 131, 221))
                 .setBorder(Border.NO_BORDER)
-                .add(Paragraph(order.finalPriceAfterTax).setBold().setFontSize(25f))
+                .add(Paragraph("Rs "+order.finalPriceAfterTax).setBold().setFontSize(25f))
         )
         document.add(userInfoTable)
 
@@ -154,7 +154,7 @@ class InvoiceGenerator(order:Order) {
                 .setPadding(2f)
         )
         itemTable.addCell(
-            Cell().setBorder(Border.NO_BORDER).add(Paragraph(order.price))
+            Cell().setBorder(Border.NO_BORDER).add(Paragraph("Rs "+order.price))
                 .setPadding(2f)
         )
         itemTable.addCell(
@@ -162,7 +162,7 @@ class InvoiceGenerator(order:Order) {
                 .setPadding(2f)
         )
         itemTable.addCell(
-            Cell().setBorder(Border.NO_BORDER).add(Paragraph(order.price))
+            Cell().setBorder(Border.NO_BORDER).add(Paragraph("Rs "+order.price))
                 .setPadding(2f)
         )
         document.add(itemTable)
@@ -174,7 +174,7 @@ class InvoiceGenerator(order:Order) {
                     .setPadding(2f)
             )
             itemTable.addCell(
-                Cell().setBorder(Border.NO_BORDER).add(Paragraph(a.price))
+                Cell().setBorder(Border.NO_BORDER).add(Paragraph("Rs "+a.price))
                     .setPadding(2f)
             )
             itemTable.addCell(
@@ -183,7 +183,7 @@ class InvoiceGenerator(order:Order) {
             )
             val p = (a.price.toInt() * a.quantity.toInt()).toString()
             itemTable.addCell(
-                Cell().setBorder(Border.NO_BORDER).add(Paragraph(p))
+                Cell().setBorder(Border.NO_BORDER).add(Paragraph("Rs "+p))
                     .setPadding(2f)
             )
             document.add(itemTable)
@@ -201,7 +201,7 @@ class InvoiceGenerator(order:Order) {
             Cell().setBorder(Border.NO_BORDER).setFontColor(DeviceRgb(13, 131, 221))
                 .add(Paragraph("Total Price"))
         )
-        finalPriceTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph(order.totalPrice)))
+        finalPriceTable.addCell(Cell().setBorder(Border.NO_BORDER).add(Paragraph("Rs "+order.totalPrice)))
         finalPriceTable.addCell(
             Cell().setBorder(Border.NO_BORDER).setFontColor(DeviceRgb(13, 131, 221))
                 .add(Paragraph("Discount"))
@@ -214,14 +214,14 @@ class InvoiceGenerator(order:Order) {
                 .add(Paragraph("Price After discount"))
         )
         finalPriceTable.addCell(
-            Cell().setBorder(Border.NO_BORDER).add(Paragraph(order.finalPriceAftrDiscnt))
+            Cell().setBorder(Border.NO_BORDER).add(Paragraph("Rs "+order.finalPriceAftrDiscnt))
         )
         finalPriceTable.addCell(
             Cell().setBorder(Border.NO_BORDER).setFontColor(DeviceRgb(13, 131, 221))
                 .add(Paragraph("Price with GST(18%)"))
         )
         finalPriceTable.addCell(
-            Cell().setBorder(Border.NO_BORDER).add(Paragraph(order.finalPriceAfterTax))
+            Cell().setBorder(Border.NO_BORDER).add(Paragraph("Rs "+order.finalPriceAfterTax))
         )
         document.add(finalPriceTable)
 

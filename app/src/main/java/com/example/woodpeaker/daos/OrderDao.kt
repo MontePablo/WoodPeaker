@@ -6,9 +6,10 @@ import com.google.firebase.firestore.DocumentSnapshot
 
 object OrderDao {
     val orderCollection=FirebaseDao.db.collection("orders")
-    fun addOrder(order: Order): Task<Void> {
-        return orderCollection.document().set(order)
+    fun addOrder(order: Order,orderId: String =""): Task<Void> {
+        return orderCollection.document(orderId).set(order)
     }
+
     fun getOrder(orderId: String): Task<DocumentSnapshot> {
         return orderCollection.document(orderId).get()
     }

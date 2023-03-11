@@ -14,9 +14,11 @@ object UserDao {
     var collection:CollectionReference
     init {
         collection = FirebaseDao.db.collection("users")
-        getUser(FirebaseDao.auth.uid!!).addOnSuccessListener { document->
-            document.toObject(User::class.java)?.let { user ->
-                this.user=user
+        if(FirebaseDao.auth.uid!=null) {
+            getUser(FirebaseDao.auth.uid!!).addOnSuccessListener { document ->
+                document.toObject(User::class.java)?.let { user ->
+                    this.user = user
+                }
             }
         }
     }

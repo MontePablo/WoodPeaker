@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
             finish()
             startActivity(Intent(this, Login::class.java))
         })
-        binding.dddd.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(applicationContext, MainActivity2::class.java))
-        })
+//        binding.dddd.setOnClickListener(View.OnClickListener {
+//            startActivity(Intent(applicationContext, PdfActivity::class.java))
+//        })
 
     }
 }

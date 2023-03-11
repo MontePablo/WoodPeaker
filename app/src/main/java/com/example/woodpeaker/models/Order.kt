@@ -27,6 +27,7 @@ class Order {
     var instruction=""
     var address=""
     var wallDesign=""
+    var invoiceLink=""
 
 
 }

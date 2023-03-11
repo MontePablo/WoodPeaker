@@ -1,9 +1,14 @@
 package com.example.woodpeaker
 
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.RadioButton
@@ -11,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.woodpeaker.daos.FirebaseDao
 import com.example.woodpeaker.daos.OrderDao
+import com.example.woodpeaker.daos.StorageDao
 import com.example.woodpeaker.daos.UserDao
 import com.example.woodpeaker.databinding.ActivityFinalOrderPageBinding
 import com.example.woodpeaker.models.Order
@@ -135,23 +141,46 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
         Toast.makeText(this,"payment failed!$p0", Toast.LENGTH_SHORT).show()
     }
     fun passOrder(id:String){
-        order.run {
-            var s=binding.adressRadioGroup.checkedRadioButtonId
-            if(s!=-1)
-                address=findViewById<RadioButton>(s).text.toString()
-            paymentId=id
-            status="Order Success!"
-            val calendar: Calendar = Calendar.getInstance() // Returns instance with current date and time set
-            val formatter = SimpleDateFormat.getDateInstance()
-            dateTime=formatter.format(calendar.time)
-        }
-        OrderDao.addOrder(order)
-            .addOnSuccessListener {
-                Toast.makeText(this, "order complete!", Toast.LENGTH_SHORT).show()
-                Log.d("TAG","order upload success")
-            }.addOnFailureListener {
-                Log.d("TAG","order upload failed ${it.localizedMessage}")
+        val c = InvoiceGenerator(order)
+        val invoiceUri = c.invoiceUri
+        val orderId = c.orderId
+        val invoiceId = c.invoiceId
+
+        StorageDao.uploadProductInvoice(invoiceUri, invoiceId)?.addOnSuccessListener {
+            Log.d("TAG", "upload success")
+            StorageDao.getInvoiceUrlOfProduct(invoiceId)!!.addOnSuccessListener {
+                val invoiceLink = it.toString()
+                Log.d("TAG", "getting Url success ${invoiceLink}")
+
+
+                order.run {
+                    this.invoiceLink=invoiceLink
+                    var s=binding.adressRadioGroup.checkedRadioButtonId
+                    if(s!=-1)
+                        address=findViewById<RadioButton>(s).text.toString()
+                    paymentId=id
+                    status="Order Success!"
+                    val calendar: Calendar = Calendar.getInstance() // Returns instance with current date and time set
+                    val formatter = SimpleDateFormat.getDateInstance()
+                    dateTime=formatter.format(calendar.time)
+
+                }
+                OrderDao.addOrder(order,orderId)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "order complete!", Toast.LENGTH_SHORT).show()
+                        Log.d("TAG","order upload success")
+                    }.addOnFailureListener {
+                        Log.d("TAG","order upload failed ${it.localizedMessage}")
+                    }
+                ContextCompat.startActivity(this, Intent(this, Orders::class.java), null)
+                finish()
             }
-        ContextCompat.startActivity(this, Intent(this, Orders::class.java), null)
+        }?.addOnFailureListener { Log.d("TAG","uploadPdf onFailure: ${it.localizedMessage}") }
+
+
+
+
+
+
     }
 }

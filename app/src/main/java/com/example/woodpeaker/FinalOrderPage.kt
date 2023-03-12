@@ -69,7 +69,7 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
             for(f in order.addons){
             addonPrice+=f.price.toInt()
         }
-        binding.addonQuantity.setText(order.addons.size)
+        binding.addonQuantity.text=order.addons.size.toString()
         binding.addonPrice.text=addonPrice.toString()
         var totalPrice=addonPrice+order.price.toInt()
         binding.totalPrice.text=totalPrice.toString()

@@ -23,7 +23,9 @@ object UserDao {
         }
     }
     fun addUser(user: User): Task<Void> {
-        var v= collection.document(FirebaseDao.auth.uid!!).set(user)
+//        var v= collection.document(FirebaseDao.auth.uid!!).set(user)
+        this.user=user
+        var v= updateUser()
         Log.d("TAG", "add user:success")
         v.addOnSuccessListener { init() }
         return v

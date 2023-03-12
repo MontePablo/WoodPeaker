@@ -3,6 +3,7 @@ package com.example.woodpeaker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.woodpeaker.adapters.SliderAdapter
@@ -111,7 +112,6 @@ class ProductDetail : AppCompatActivity() {
         binding.features.text=s
     }
     fun addAddons(){
-
         for(f in product.addons){
             val viewBinding= CustomViewAddonBinding.inflate(layoutInflater)
             Glide.with(viewBinding.addonImage).load(f.imageLink).into(viewBinding.addonImage)

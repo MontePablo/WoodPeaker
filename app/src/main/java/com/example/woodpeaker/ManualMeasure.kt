@@ -141,11 +141,7 @@ class ManualMeasure : AppCompatActivity() {
                 order.lengths.add(l2.toString())
             }
             "Island shape kitchen" ->{
-                val d=l1+l2+l3
-                Log.d("TAG","price:"+order.price)
-                Log.d("TAG","l1:"+l1)
-                Log.d("TAG","l2:"+l2)
-                Log.d("TAG","l3:"+l3)
+                val d=l1+l2+l3+l2 -4
 
                 val c=order.price.toFloat() * d
                 binding.price.text=c.toString()
@@ -154,7 +150,7 @@ class ManualMeasure : AppCompatActivity() {
                 order.lengths.add(l3.toString())
             }
             "U shape kitchen" ->{
-                val d=l1+l2+l3
+                val d=l1+l2+l3 -2
                 val c=order.price.toFloat() * d
                 binding.price.text=c.toString()
                 order.lengths.add(l1.toString())
@@ -163,7 +159,7 @@ class ManualMeasure : AppCompatActivity() {
 
             }
             "L shape kitchen" ->{
-                val d=l1+l2
+                val d=l1+l2  -1
                 val c=order.price.toFloat() * d
                 binding.price.text=c.toString()
                 order.lengths.add(l1.toString())

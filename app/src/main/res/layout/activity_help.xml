@@ -64,6 +64,7 @@
            android:layout_margin="20dp"
            android:padding="10dp"/>
        <Button
+           android:foreground="?android:attr/selectableItemBackground"
            android:id="@+id/send"
            android:layout_margin="30dp"
            android:layout_width="match_parent"

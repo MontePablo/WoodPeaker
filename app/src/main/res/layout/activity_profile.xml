@@ -169,6 +169,7 @@
         android:textStyle="bold"
         android:textAlignment="center"/>
     <Button
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_margin="10dp"
         android:elevation="10dp"
         android:padding="10dp"
@@ -195,6 +196,7 @@
 
 
         <Button
+            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/save"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -210,6 +212,7 @@
             app:layout_constraintWidth_percent="0.49" />
 
         <Button
+            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/skip"
             android:layout_width="0dp"
             android:layout_height="0dp"

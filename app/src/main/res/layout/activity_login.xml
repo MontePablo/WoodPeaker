@@ -80,6 +80,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="30dp"/>
         <TextView
+            android:foreground="?android:attr/selectableItemBackground"
             android:textStyle="bold"
             android:id="@+id/forget_password"
             android:layout_width="wrap_content"
@@ -92,6 +93,7 @@
             app:layout_constraintTop_toBottomOf="@id/password"/>
 
         <Button
+            android:foreground="?android:attr/selectableItemBackground"
             android:backgroundTint="#0BC89E"
             android:elevation="20dp"
             android:id="@+id/sign_in"
@@ -122,6 +124,8 @@
             app:layout_constraintTop_toBottomOf="@+id/sign_in">
 
             <Button
+                android:foreground="?android:attr/selectableItemBackground"
+                android:textAllCaps="false"
                 android:drawableLeft="@drawable/logo_google"
                 android:id="@+id/google"
                 android:padding="8dp"
@@ -163,6 +167,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
+            android:foreground="?android:attr/selectableItemBackground"
             android:id="@+id/goto_sign_up"
             android:layout_width="0dp"
             android:layout_height="0dp"

@@ -60,6 +60,7 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <Button
+        android:foreground="?android:attr/selectableItemBackground"
         android:id="@+id/item_order_review"
         android:layout_width="89dp"
         android:layout_height="33dp"

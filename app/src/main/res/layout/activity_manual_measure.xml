@@ -87,6 +87,7 @@
         app:layout_constraintTop_toBottomOf="@id/l2" />
 
     <Button
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_margin="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -144,6 +145,7 @@
         android:visibility="gone" />
 
     <Button
+        android:foreground="?android:attr/selectableItemBackground"
         app:layout_constraintTop_toBottomOf="@id/retryToast"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -160,6 +162,7 @@
 
 
     <Button
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_margin="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"

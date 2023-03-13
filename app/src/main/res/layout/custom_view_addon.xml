@@ -62,6 +62,7 @@
                 android:layout_margin="5dp"
                 android:text="₹"/>
             <ImageButton
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_margin="10dp"
                 android:elevation="10dp"
                 android:src="@drawable/logo_plus"
@@ -88,6 +89,7 @@
                 android:textStyle="bold"
                 android:textAlignment="center"/>
             <ImageButton
+                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_marginBottom="10dp"
                 android:elevation="10dp"
                 android:src="@drawable/logo_minus"

@@ -29,21 +29,21 @@ class InvoiceGenerator(order:Order) {
                     "ph:+91 9878543332\nwoodpeakercustomersupport@gmail.com"
         orderId = "OD" + System.currentTimeMillis().toString()
         invoiceId = "INV" + System.currentTimeMillis().toString()+".pdf"
-        order.apply {
-            title = "L type white body kitchen"
-            lengths.addAll(arrayListOf("2.5", "4.1f", "3f"))
-            price = "32000"
-            totalPrice = "40000"
-            dateTime = "21 Jan 2023"
-            discountPercent = "8%"
-            address =
-                "Madarat, Baruipur\nSidheswari Kalitala\nnear Kalyani Construction Shop\npin-700144"
-            finalPriceAftrDiscnt = "35000"
-            finalPriceAfterTax = "42000"
-            addons.add(Addon().apply { name = "chimney";price = "2000";quantity = "2" })
-            addons.add(Addon().apply { name = "glass";price = "1000";quantity = "3" })
-            addons.add(Addon().apply { name = "rack";price = "4000";quantity = "1" })
-        }
+//        order.apply {
+//            title = "L type white body kitchen"
+//            lengths.addAll(arrayListOf("2.5", "4.1f", "3f"))
+//            price = "32000"
+//            totalPrice = "40000"
+//            dateTime = "21 Jan 2023"
+//            discountPercent = "8%"
+//            address =
+//                "Madarat, Baruipur\nSidheswari Kalitala\nnear Kalyani Construction Shop\npin-700144"
+//            finalPriceAftrDiscnt = "35000"
+//            finalPriceAfterTax = "42000"
+//            addons.add(Addon().apply { name = "chimney";price = "2000";quantity = "2" })
+//            addons.add(Addon().apply { name = "glass";price = "1000";quantity = "3" })
+//            addons.add(Addon().apply { name = "rack";price = "4000";quantity = "1" })
+//        }
 
         val pdfpath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
             .toString()

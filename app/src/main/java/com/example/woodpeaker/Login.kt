@@ -37,10 +37,13 @@ class Login : AppCompatActivity() {
         binding.newSignup.setOnClickListener(View.OnClickListener {
             val email=binding.newEmail.text.toString()
             val password=binding.newPassword.text.toString()
-            signUp(email,password)
+            val name=binding.newName.text.toString()
+            val number=binding.newNumber.text.toString()
+
+
+            signUp(email,password,name,number)
         })
 
-        binding.newSignup.setOnClickListener(View.OnClickListener {  })
         binding.gotoSignUp.setOnClickListener(View.OnClickListener {
             binding.signinLayout.visibility=View.GONE
             binding.signupLayout.visibility=View.VISIBLE
@@ -51,6 +54,7 @@ class Login : AppCompatActivity() {
         })
         binding.google.setOnClickListener(View.OnClickListener { googleSignIn() })
 
+        binding.forgetPassword.setOnClickListener(View.OnClickListener { passwordReset() })
 
 
     }
@@ -142,6 +146,33 @@ class Login : AppCompatActivity() {
             }.addOnFailureListener { exception-> Log.d("TAG","updateUI:onFailure:"+exception.localizedMessage) }
         }
     }
+    fun updateUIforSignUp(firebaseUser: FirebaseUser?,name:String,number:String,email:String) {
+        if(firebaseUser!=null){
+            UserDao.getUser(firebaseUser!!.uid).addOnSuccessListener { document->
+                if(document.exists()){
+                    Toast.makeText(this,"welcome Back!", Toast.LENGTH_SHORT).show()
+                }else{
+                    val user= User()
+                    user.id=firebaseUser.uid
+                    user.name=name
+                    user.email=email
+                    user.mobile=number
+                    UserDao.addUser(user)
+
+                    Toast.makeText(this,"Success!",Toast.LENGTH_SHORT)
+                }
+                if(pack=="Package1" || pack=="Package2"){
+                    Toast.makeText(this,pack, Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, Profile::class.java)
+                    intent.putExtra("pack",pack)
+                    startActivity(intent)
+                }else {
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
+                finish()
+            }.addOnFailureListener { exception-> Log.d("TAG","updateUI:onFailure:"+exception.localizedMessage) }
+        }
+    }
 
     fun allButtonsVisibility(visib: Int) {
         binding.signIn.visibility=visib
@@ -175,14 +206,14 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this,it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
     }
-    fun signUp(email:String,password:String){
+    fun signUp(email:String,password:String,name:String,number:String){
         allButtonsVisibility(View.INVISIBLE)
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("TAG", "createUserWithEmail:success")
-                    updateUI(auth.currentUser)
+                    updateUIforSignUp(auth.currentUser,name,number,email)
                     startActivity(Intent(this, MainActivity::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
@@ -192,5 +223,23 @@ class Login : AppCompatActivity() {
                     updateUI(null)
                 }
             }
+    }
+    private fun passwordReset() {
+        val v=binding.email.text.toString()
+        if(v.isNullOrEmpty()){
+            Toast.makeText(this,"fill your email first!",Toast.LENGTH_LONG)
+        }else {
+            auth.sendPasswordResetEmail(binding.email.text.toString()!!)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("TAG", "Email sent.")
+                        Toast.makeText(this,"password reset email sent!\ncheck your inbox",Toast.LENGTH_LONG)
+                    } else {
+                        Log.d("TAG", "email sending failure")
+                    }
+                }.addOnFailureListener {
+                    Log.d("TAG", "passwrd reset ${it.localizedMessage}")
+                }
+        }
     }
 }

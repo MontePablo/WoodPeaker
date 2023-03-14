@@ -85,7 +85,9 @@ class ProductDetail : AppCompatActivity() {
         binding.otherDetail.text=product.description
 
         binding.tryon.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this,ThreeDimentionalModelActivity::class.java))
+            startActivity(Intent(this,ThreeDimentionalModelActivity::class.java)
+                .putExtra("modelLink",product.model3dlink))
+            Log.d("TAG","modelLink: "+product.model3dlink)
         })
 
         addFeatures()

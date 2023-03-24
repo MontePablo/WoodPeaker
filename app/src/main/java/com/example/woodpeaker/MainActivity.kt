@@ -34,9 +34,9 @@ class MainActivity : AppCompatActivity() {
             finish()
             startActivity(Intent(this, Login::class.java))
         })
-//        binding.dddd.setOnClickListener(View.OnClickListener {
-//            startActivity(Intent(applicationContext, PdfActivity::class.java))
-//        })
 
+    }
+    fun demo(view:View){
+        startActivity(Intent(applicationContext,FcmNotificationSend::class.java))
     }
 }

@@ -1,9 +1,8 @@
 package com.example.woodpeaker
 
-import android.app.DownloadManager.Request
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -29,7 +28,12 @@ class FcmNotificationSend(userToken:String,title:String,body:String,activity:App
             mainObj.put("notification",dataobj)
 
             val request=JsonObjectRequest(com.android.volley.Request.Method.POST,postUrl,mainObj,Response.Listener<JSONObject>{ Log.d("TAG",it.toString())
-            },Response.ErrorListener {Log.d("TAG",it.toString())})
+            },Response.ErrorListener {Log.d("TAG",it.toString())}){
+
+            }
+
+//            request.headers["Content-Type"] = "application/json"
+//            request.headers["Authorization"] = fcmServerKey
             requestQueue.add(request)
 
         }finally {

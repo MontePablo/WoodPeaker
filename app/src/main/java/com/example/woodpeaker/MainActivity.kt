@@ -37,6 +37,6 @@ class MainActivity : AppCompatActivity() {
 
     }
     fun demo(view:View){
-        startActivity(Intent(applicationContext,FcmNotificationSend::class.java))
+        startActivity(Intent(applicationContext,MainActivity2::class.java))
     }
 }

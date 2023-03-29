@@ -36,10 +36,20 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     fun btn(view: View) {
-        RealtimeDatabaseDao.reference.addValueEventListener(object: ValueEventListener {
+        val notf = Notification(NotificationConstants.to_user, "this is title", "this is body");
+        RetrofitClient.getApiHolder().sendNotification(notf).enqueue(object :
+            Callback<Notification> {
+            override fun onResponse(call: Call<Notification>, response: Response<Notification>) {
+                Log.d("TAG","notification upload success ${response.message()}")
+            }
 
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val value = snapshot.value as String
+            override fun onFailure(call: Call<Notification>, t: Throwable) {
+                Log.d("TAG","notification upload failed : ${t.localizedMessage}")
+            }
+        })
+//        RealtimeDatabaseDao.reference.addValueEventListener(object: ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                val value = snapshot.value as String
 //                Log.d("TAG", "token Value is: " + value)
 //                FcmNotificationSend(
 //                    value,
@@ -47,43 +57,12 @@ class MainActivity2 : AppCompatActivity() {
 //                    "New Order Arrived! Check Now",
 //                    this@MainActivity2
 //                )
-                Log.d("TAG",value)
-                val notf = Notification(NotificationConstants.to_user, "this is title", "this is body");
-                RetrofitClient.getApiHolder().sendNotification(notf).enqueue(object :
-                    Callback<Notification> {
-                    override fun onResponse(call: Call<Notification>, response: Response<Notification>) {
-                        Log.d("TAG","notification upload success ${response.message()}")
-                    }
-
-                    override fun onFailure(call: Call<Notification>, t: Throwable) {
-                        Log.d("TAG","notification upload failed : ${t.localizedMessage}")
-                    }
-                })
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.w("TAG", "Failed to read value.", error.toException())
-            }
-        })
-//        val notf = Notification(NotificationConstants.to_user, "this is title", "this is body");
-
-//        RetrofitClient.getApiHolder().sendNotification(notf).enqueue(object :
-//            Callback<Notification> {
-//            override fun onResponse(call: Call<Notification>, response: Response<Notification>) {
-//                Log.d("TAG","notification upload success")
+//                Log.d("TAG",value)
 //            }
-//
-//            override fun onFailure(call: Call<Notification>, t: Throwable) {
-//                Log.d("TAG","notification upload failed : ${t.localizedMessage}")
+
+//            override fun onCancelled(error: DatabaseError) {
+//                Log.w("TAG", "Failed to read value.", error.toException())
 //            }
 //        })
-
-//        val message = Message.builder()
-//            .putData("score", "850")
-//            .putData("time", "2:45")
-//            .setTopic(topic)
-//            .build()
-//        val response: String = FirebaseMessaging.getInstance().send(message)
-//        println("Successfully sent message: $response")
     }
 }

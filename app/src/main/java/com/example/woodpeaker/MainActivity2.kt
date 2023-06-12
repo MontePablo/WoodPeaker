@@ -36,17 +36,17 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     fun btn(view: View) {
-        val notf = Notification(NotificationConstants.to_user, "this is title", "this is body");
-        RetrofitClient.getApiHolder().sendNotification(notf).enqueue(object :
-            Callback<Notification> {
-            override fun onResponse(call: Call<Notification>, response: Response<Notification>) {
-                Log.d("TAG","notification upload success ${response.message()}")
-            }
-
-            override fun onFailure(call: Call<Notification>, t: Throwable) {
-                Log.d("TAG","notification upload failed : ${t.localizedMessage}")
-            }
-        })
+//        val notf = Notification(NotificationConstants.to_user, "this is title", "this is body");
+//        RetrofitClient.getApiHolder().sendNotification(notf).enqueue(object :
+//            Callback<Notification> {
+//            override fun onResponse(call: Call<Notification>, response: Response<Notification>) {
+//                Log.d("TAG","notification upload success ${response.message()}")
+//            }
+//
+//            override fun onFailure(call: Call<Notification>, t: Throwable) {
+//                Log.d("TAG","notification upload failed : ${t.localizedMessage}")
+//            }
+//        })
 //        RealtimeDatabaseDao.reference.addValueEventListener(object: ValueEventListener {
 //            override fun onDataChange(snapshot: DataSnapshot) {
 //                val value = snapshot.value as String

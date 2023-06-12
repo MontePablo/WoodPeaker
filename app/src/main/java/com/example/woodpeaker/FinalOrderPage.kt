@@ -1,20 +1,14 @@
 package com.example.woodpeaker
 
-import android.app.DownloadManager
-import android.content.Context
 import android.content.Intent
 import android.graphics.Paint
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.example.woodpeaker.daos.FirebaseDao
 import com.example.woodpeaker.daos.OrderDao
 import com.example.woodpeaker.daos.StorageDao
 import com.example.woodpeaker.daos.UserDao
@@ -24,6 +18,9 @@ import com.google.gson.Gson
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -168,6 +165,7 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
                 OrderDao.addOrder(order,orderId)
                     .addOnSuccessListener {
                         Toast.makeText(this, "order complete!", Toast.LENGTH_SHORT).show()
+                        sendNotf(order.title,order.finalPriceAfterTax)
                         Log.d("TAG","order upload success")
                     }.addOnFailureListener {
                         Log.d("TAG","order upload failed ${it.localizedMessage}")
@@ -182,5 +180,19 @@ class FinalOrderPage : AppCompatActivity(), PaymentResultListener {
 
 
 
+    }
+
+    fun sendNotf(title: String,price:String) {
+        val notf = Notification(NotificationConstants.to_user, "New Order Received!","product: "+title+"\namount: "+price);
+        RetrofitClient.getApiHolder().sendNotification(notf).enqueue(object :
+            Callback<Notification> {
+            override fun onResponse(call: Call<Notification>, response: Response<Notification>) {
+                Log.d("TAG","notification upload success ${response.message()}")
+            }
+
+            override fun onFailure(call: Call<Notification>, t: Throwable) {
+                Log.d("TAG","notification upload failed : ${t.localizedMessage}")
+            }
+        })
     }
 }

@@ -39,6 +39,7 @@ local.properties
 # Android Studio
 .idea/
 .idea
+/.idea/
 /*/.idea/
 /*/*/.idea/
 .idea
@@ -59,4 +60,3 @@ gradle/
 gradle/wrapper
 gradlew
 gradlew.bat
-/.idea/
